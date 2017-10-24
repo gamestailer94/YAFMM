@@ -16,5 +16,12 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.7.9"
+  },
+  "dependencies": {
+    "jsx": "^0.9.89",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "underscore": "^1.8.3",
+    "winston": "^2.4.0"
   }
 }
