@@ -1,0 +1,20 @@
+{
+  "name": "factorio-mod-Manager",
+  "version": "1.0.0",
+  "description": "A Mod Manger / load for Factorio with Cloud Support",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "factorio",
+    "mode Manager",
+    "Launcher"
+  ],
+  "author": "Tim Platzke <tim@platzke.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.7.9"
+  }
+}
