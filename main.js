@@ -1,6 +1,7 @@
 'use strict';
 
-const winston = require('winston');
+const winston = require('winston')
+const {app} = require('electron')
 
 const loggerConfig = {
     transports: [
@@ -14,9 +15,8 @@ const loggerConfig = {
             label: "Main"
         })
     ]
-};
-
-const logger = winston.createLogger(loggerConfig);
+}
+const logger = winston.Logger(loggerConfig)
 
 
 
