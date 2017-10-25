@@ -4,6 +4,7 @@ const winston = require('winston')
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const _ = require('underscore')
+const url = require('url')
 
 const APP_DEBUG = true
 
@@ -25,11 +26,19 @@ const logger = winston.Logger(loggerConfig)
 let windows = {};
 const windowOption = {
     width: 1024,
-    height: 768
+    height: 768,
+    'webPreferences': {
+        'devTools': APP_DEBUG
+    }
 }
 
 function start() {
     windows.mainWindow = new BrowserWindow(windowOption)
+    windows.mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname,'html', 'index.html'),
+        protocol: 'file:',
+        slashes: true
+    }))
 
     if(APP_DEBUG)
     {
