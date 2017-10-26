@@ -1,0 +1,1 @@
+{"version":3,"file":"app.css","sources":["app.scss","_loader.scss"],"sourcesContent":["@import \"loader\";",".loader {\n  padding-top: 250px;\n  width: 200px;\n  &> svg > path {\n    fill: red;\n  }\n}\n"],"names":[],"mappings":"ACAA,AAAA,OAAO,CAAC;EACN,WAAW,EAAE,KAAK;EAClB,KAAK,EAAE,KAAK,GAIb;EAND,AAGW,OAHJ,GAGF,GAAG,GAAG,IAAI,CAAC;IACZ,IAAI,EAAE,GAAG,GACV"}

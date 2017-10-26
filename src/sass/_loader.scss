@@ -1,0 +1,7 @@
+.loader {
+  padding-top: 250px;
+  width: 200px;
+  &> svg > path {
+    fill: red;
+  }
+}

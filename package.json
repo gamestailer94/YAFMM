@@ -18,9 +18,12 @@
     "electron": "^1.7.9"
   },
   "dependencies": {
-    "jsx": "^0.9.89",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.4.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.6",
     "underscore": "^1.8.3",
     "winston": "^2.4.0"
   }
