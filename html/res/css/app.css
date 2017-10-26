@@ -1,7 +1,6 @@
 .loader {
-  padding-top: 250px;
-  width: 200px; }
+  margin-top: 250px; }
   .loader > svg > path {
-    fill: red; }
+    fill: #17a2b8; }
 
 /*# sourceMappingURL=app.css.map */

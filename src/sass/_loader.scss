@@ -1,7 +1,6 @@
 .loader {
-  padding-top: 250px;
-  width: 200px;
+  margin-top: 250px;
   &> svg > path {
-    fill: red;
+    fill: $cyan;
   }
 }
