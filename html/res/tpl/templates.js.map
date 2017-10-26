@@ -1,0 +1,1 @@
+{"version":3,"sources":["menu.jsx"],"names":["Menu","React","Component","render"],"mappings":";;AAAA,MAAMA,IAAN,SAAmBC,MAAMC,SAAzB,CACA;AACIC,aAAQ;AACJ,eAAO;AAAA;AAAA;AAAA;AAAA,SAAP;AACH;AAHL","file":"templates.js","sourcesContent":["class Menu extends React.Component\r\n{\r\n    render(){\r\n        return <h1>hello</h1>\r\n    }\r\n}"]}

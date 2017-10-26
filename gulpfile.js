@@ -1,8 +1,10 @@
 'use strict'
 
-let gulp = require('gulp')
-let sass = require('gulp-sass')
-let sourcemaps = require('gulp-sourcemaps')
+const gulp = require('gulp')
+const sass = require('gulp-sass')
+const sourcemaps = require('gulp-sourcemaps')
+const concat = require('gulp-concat')
+const babel = require('gulp-babel');
 
 gulp.task('sass', function () {
     return gulp.src('./src/sass/**/[^_]*.scss')
@@ -12,8 +14,28 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./html/res/css'))
 });
 
+gulp.task('templates', function () {
+    return gulp.src('./src/tpl/**/*.jsx')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(concat('templates.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('./html/res/tpl'))
+})
+
+gulp.task('js', function () {
+    return gulp.src('./src/js/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(concat('main.js'))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('./html/res/js'))
+})
+
 gulp.task('watch', function () {
     gulp.watch('./src/sass/**/*.scss', ['sass'])
+    gulp.watch('./src/tpl/**/*.jsx', ['temmplates'])
+    gulp.watch('./src/js/**/*.js', ['js'])
 });
 
-gulp.task('default', ['sass'])
+gulp.task('default', ['sass', 'templates', 'js'])
