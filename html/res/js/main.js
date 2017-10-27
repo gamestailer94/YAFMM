@@ -1,5 +1,4 @@
 'use strict';
-//required for bootstrap
 
 var _page = require('./res/tpl/page.js');
 
@@ -7,9 +6,7 @@ var _page2 = _interopRequireDefault(_page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const $ = require('jquery');
-const Popper = require('popper.js');
-require('./res/js/bootstrap.js');
+$('[data-toggle="tooltip"]').tooltip();
 
 const React = require('react');
 const ReactDOM = require('react-dom');
