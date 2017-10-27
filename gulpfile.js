@@ -17,8 +17,8 @@ gulp.task('sass', function () {
 gulp.task('templates', function () {
     return gulp.src('./src/tpl/**/*.jsx')
         .pipe(sourcemaps.init())
-        .pipe(babel())
         .pipe(concat('templates.js'))
+        .pipe(babel())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./html/res/tpl'))
 })
@@ -26,8 +26,8 @@ gulp.task('templates', function () {
 gulp.task('js', function () {
     return gulp.src('./src/js/**/*.js')
         .pipe(sourcemaps.init())
-        .pipe(babel())
         .pipe(concat('main.js'))
+        .pipe(babel())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./html/res/js'))
 })
