@@ -1,4 +1,14 @@
-@import "bootstrap/functions";
-@import "bootstrap/variables";
+$sizes: (
+  5: 5%,
+  10: 10%,
+  15: 15%,
+  20: 20%,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
 @import "loader";
 @import "menu";
