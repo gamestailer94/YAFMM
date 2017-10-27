@@ -6,9 +6,7 @@ require('./res/js/bootstrap.js')
 
 const React = require('react')
 const ReactDOM = require('react-dom')
-const fs = require('fs')
-const path = require('path')
 const DomRoot = document.getElementById('root')
-import Menu from './res/tpl/templates.js'
+import Page from './res/tpl/page.js'
 
-ReactDOM.render(<Menu/>, DomRoot)
+ReactDOM.render(<Page/>, DomRoot)

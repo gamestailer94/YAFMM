@@ -4,10 +4,12 @@ const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
 const concat = require('gulp-concat')
-const babel = require('gulp-babel');
+const babel = require('gulp-babel')
+const plumber = require('gulp-plumber')
 
 gulp.task('sass', function () {
     return gulp.src('./src/sass/**/[^_]*.scss')
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
@@ -16,8 +18,8 @@ gulp.task('sass', function () {
 
 gulp.task('templates', function () {
     return gulp.src('./src/tpl/**/*.jsx')
+        .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(concat('templates.js'))
         .pipe(babel())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./html/res/tpl'))
@@ -25,6 +27,7 @@ gulp.task('templates', function () {
 
 gulp.task('js', function () {
     return gulp.src('./src/js/**/*.js')
+        .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(concat('main.js'))
         .pipe(babel())

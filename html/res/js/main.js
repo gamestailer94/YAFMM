@@ -1,9 +1,9 @@
 'use strict';
 //required for bootstrap
 
-var _templates = require('./res/tpl/templates.js');
+var _page = require('./res/tpl/page.js');
 
-var _templates2 = _interopRequireDefault(_templates);
+var _page2 = _interopRequireDefault(_page);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13,10 +13,8 @@ require('./res/js/bootstrap.js');
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const fs = require('fs');
-const path = require('path');
 const DomRoot = document.getElementById('root');
 
 
-ReactDOM.render(React.createElement(_templates2.default, null), DomRoot);
+ReactDOM.render(React.createElement(_page2.default, null), DomRoot);
 //# sourceMappingURL=main.js.map
