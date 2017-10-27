@@ -1,5 +1,6 @@
 $sizes: (
   5: 5%,
+  5-r: 5rem,
   10: 10%,
   15: 15%,
   20: 20%,
@@ -11,4 +12,3 @@ $sizes: (
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "loader";
-@import "menu";

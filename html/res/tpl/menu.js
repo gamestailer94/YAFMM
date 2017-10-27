@@ -14,7 +14,7 @@ class Menu extends _react2.default.Component {
     render() {
         return _react2.default.createElement(
             "menu",
-            { className: "position-fixed w-100 bg-dark menu h-10 mt-0" },
+            { className: "position-fixed w-100 bg-dark mt-0 h-5-r" },
             _react2.default.createElement("div", { className: "row" })
         );
     }
