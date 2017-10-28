@@ -3,7 +3,7 @@ export default class Button extends React.Component {
 
     constructor(props){
         super(props)
-        this.state = {'working':props.working}
+        this.state = {'working':false}
         this.handleClick = this.handleClick.bind(this)
     }
 
@@ -34,3 +34,4 @@ export default class Button extends React.Component {
         </button>
     }
 }
+

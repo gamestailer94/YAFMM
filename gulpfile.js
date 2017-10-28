@@ -37,9 +37,9 @@ gulp.task('js', function () {
 })
 
 gulp.task('watch', function () {
-    watch('./src/sass/**/*.scss', gulp.start('sass'))
-    watch('./src/tpl/**/*.js', gulp.start('templates'))
-    watch('./src/js/**/*.js', gulp.start('js'))
+    watch('src/sass/**/*.scss', () =>{gulp.start('sass')})
+    watch('src/tpl/**/*.js', () => {gulp.start('templates')})
+    watch('src/js/**/*.js', () => {gulp.start('js')})
 });
 
 gulp.task('default', ['sass', 'templates', 'js'])

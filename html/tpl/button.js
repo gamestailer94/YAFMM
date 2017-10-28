@@ -14,7 +14,7 @@ class Button extends _react2.default.Component {
 
     constructor(props) {
         super(props);
-        this.state = { 'working': props.working };
+        this.state = { 'working': false };
         this.handleClick = this.handleClick.bind(this);
     }
 

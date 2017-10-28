@@ -10,6 +10,10 @@ $sizes: (
   100: 100%
 );
 
+.t-0 {
+  top:0 !important;
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "font-awsome/font-awesome";
 @import "loader";

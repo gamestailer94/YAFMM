@@ -2,7 +2,7 @@
   "name": "factorio-mod-Manager",
   "version": "1.0.0",
   "description": "A Mod Manger / load for Factorio with Cloud Support",
-  "main": "main.js",
+  "main": "start.js",
   "scripts": {
     "start": "electron ."
   },
