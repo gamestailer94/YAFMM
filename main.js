@@ -42,6 +42,7 @@ function start() {
 
     if(APP_DEBUG)
     {
+        BrowserWindow.addDevToolsExtension(path.join(__dirname,'devtool'))
         windows.mainWindow.openDevTools()
     }
 

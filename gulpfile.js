@@ -6,6 +6,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const concat = require('gulp-concat')
 const babel = require('gulp-babel')
 const plumber = require('gulp-plumber')
+const watch = require('gulp-watch')
 
 gulp.task('sass', function () {
     return gulp.src('./src/sass/**/[^_]*.scss')
@@ -36,9 +37,9 @@ gulp.task('js', function () {
 })
 
 gulp.task('watch', function () {
-    gulp.watch('./src/sass/**/*.scss', ['sass'])
-    gulp.watch('./src/tpl/**/*.js', ['templates'])
-    gulp.watch('./src/js/**/*.js', ['js'])
+    watch('./src/sass/**/*.scss', gulp.start('sass'))
+    watch('./src/tpl/**/*.js', gulp.start('templates'))
+    watch('./src/js/**/*.js', gulp.start('js'))
 });
 
 gulp.task('default', ['sass', 'templates', 'js'])
