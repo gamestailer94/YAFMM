@@ -13,16 +13,16 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./html/res/css'))
+        .pipe(gulp.dest('./html/css'))
 });
 
 gulp.task('templates', function () {
-    return gulp.src('./src/tpl/**/*.jsx')
+    return gulp.src('./src/tpl/**/*.js')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./html/res/tpl'))
+        .pipe(gulp.dest('./html/tpl'))
 })
 
 gulp.task('js', function () {
@@ -32,12 +32,12 @@ gulp.task('js', function () {
         .pipe(concat('main.js'))
         .pipe(babel())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./html/res/js'))
+        .pipe(gulp.dest('./html/js'))
 })
 
 gulp.task('watch', function () {
     gulp.watch('./src/sass/**/*.scss', ['sass'])
-    gulp.watch('./src/tpl/**/*.jsx', ['templates'])
+    gulp.watch('./src/tpl/**/*.js', ['templates'])
     gulp.watch('./src/js/**/*.js', ['js'])
 });
 

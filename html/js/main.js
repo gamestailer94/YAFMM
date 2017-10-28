@@ -1,6 +1,6 @@
 'use strict';
 
-var _page = require('./res/tpl/page.js');
+var _page = require('./tpl/page.js');
 
 var _page2 = _interopRequireDefault(_page);
 
