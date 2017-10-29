@@ -1,16 +1,24 @@
 import React from 'react'
-export default class ModEntry extends React.Component {
-    constructor(props) {
+import {observer} from 'mobx-react'
+
+@observer
+class ModEntry extends React.Component {
+
+    constructor(props){
         super(props)
     }
 
-    getClassName(){
-        return;
+    getIconClassName(){
+        if(this.props.active)
+            return 'fa fa-lg fa-check.square-o'
+        else
+            return 'fa fa-lg fa-square-o'
     }
 
     render(){
         return <li className="list-group-item">
-            <i className="fa fa-lg fa-square" />
+            <i className={this.getIconClassName()}/>{' '}{this.props.name}
         </li>
     }
 }
+export default ModEntry

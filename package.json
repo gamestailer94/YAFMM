@@ -18,6 +18,7 @@
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "electron": "^1.7.9",
     "electron-react-devtools": "^0.4.0",
     "gulp": "^3.9.1",
@@ -32,9 +33,12 @@
     "gulp-watch": "^4.3.11"
   },
   "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "bootstrap": "4.0.0-beta.2",
     "jquery": "^3.2.1",
     "jxs": "^0.0.1",
+    "mobx": "^3.3.1",
+    "mobx-react": "^4.3.3",
     "popper.js": "^1.12.6",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

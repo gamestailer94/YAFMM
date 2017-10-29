@@ -24,7 +24,7 @@ gulp.task('js', function () {
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(babel())
-        .pipe(uglify())
+        // .pipe(uglify())
         .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('./html'))
 })
