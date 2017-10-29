@@ -3,10 +3,11 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const sourcemaps = require('gulp-sourcemaps')
-const concat = require('gulp-concat')
 const babel = require('gulp-babel')
 const plumber = require('gulp-plumber')
 const watch = require('gulp-watch')
+const uglify = require('gulp-uglify-es').default
+const rename = require('gulp-rename')
 
 gulp.task('sass', function () {
     return gulp.src('./src/sass/**/[^_]*.scss')
@@ -17,29 +18,20 @@ gulp.task('sass', function () {
         .pipe(gulp.dest('./html/css'))
 });
 
-gulp.task('templates', function () {
-    return gulp.src('./src/tpl/**/*.js')
-        .pipe(plumber())
-        .pipe(sourcemaps.init())
-        .pipe(babel())
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./html/tpl'))
-})
 
 gulp.task('js', function () {
-    return gulp.src('./src/js/**/*.js')
+    return gulp.src('./src/**/*.js')
         .pipe(plumber())
         .pipe(sourcemaps.init())
-        .pipe(concat('main.js'))
         .pipe(babel())
+        .pipe(uglify())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./html/js'))
+        .pipe(gulp.dest('./html'))
 })
 
 gulp.task('watch', function () {
     watch('src/sass/**/*.scss', () =>{gulp.start('sass')})
-    watch('src/tpl/**/*.js', () => {gulp.start('templates')})
-    watch('src/js/**/*.js', () => {gulp.start('js')})
+    watch('src/**/*.js', () => {gulp.start('js')})
 });
 
-gulp.task('default', ['sass', 'templates', 'js'])
+gulp.task('default', ['sass', 'js'])

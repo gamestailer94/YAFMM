@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from './button.js'
-import _ from 'underscore'
 export default class Menu extends React.Component
 {
     componentDidMount(){

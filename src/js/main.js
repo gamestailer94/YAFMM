@@ -1,8 +1,9 @@
 'use strict'
-const React = require('react')
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Page from './js/tpl/page'
 
-const ReactDOM = require('react-dom')
-const DomRoot = document.getElementById('root')
-import Page from './tpl/page.js'
 
-ReactDOM.render(<Page/>, DomRoot)
+ReactDOM.render(
+    <Page/>
+    , document.getElementById('root'))
