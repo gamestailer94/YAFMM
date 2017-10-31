@@ -14,6 +14,14 @@ $sizes: (
   top:0 !important;
 }
 
+.menu {
+  height: 46px;
+}
+
+.content {
+  padding-top: 46px;
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "font-awsome/font-awesome";
 @import "loader";

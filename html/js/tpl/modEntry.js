@@ -21,16 +21,21 @@ let ModEntry = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.
     }
 
     getIconClassName() {
-        if (this.props.active) return 'fa fa-lg fa-check.square-o';else return 'fa fa-lg fa-square-o';
+        if (this.props.mod.active) return 'fa fa-fw fa-lg fa-check-square';else return 'fa fa-fw fa-lg fa-square-o';
+    }
+
+    handleClick() {
+        let mod = this.props.mod;
+        mod.active = !this.props.mod.active;
     }
 
     render() {
         return _react2.default.createElement(
             'li',
-            { className: 'list-group-item' },
+            { onClick: this.handleClick.bind(this), className: 'list-group-item' },
             _react2.default.createElement('i', { className: this.getIconClassName() }),
             ' ',
-            this.props.name
+            this.props.mod.name
         );
     }
 }) || _class;

@@ -2,17 +2,18 @@ import React from 'react'
 import ModEntry from './ModEntry'
 import { observer, inject } from 'mobx-react'
 
-@inject(['modList']) @observer
+@inject(['profile']) @observer
 class ModList extends React.Component {
 
     render(){
-        console.log(this.props.)
         return <div className="mod-list w-100 my-1 row">
-            <ul className="list-group">
-                {this.props.modList.mods.map((mod) => {
-                    return <ModEntry key={mod.id} {...mod} />
-                })}
-            </ul>
+            <div className="col-12">
+                <ul className="list-group">
+                    {this.props.profile.mods.map((mod) => {
+                        return <ModEntry key={mod.id} mod={mod} />
+                    })}
+                </ul>
+            </div>
         </div>
     }
 }

@@ -74,7 +74,11 @@ let Page = class Page extends _react2.default.Component {
             'div',
             null,
             header,
-            content
+            _react2.default.createElement(
+                'div',
+                { className: 'content' },
+                content
+            )
         );
     }
 

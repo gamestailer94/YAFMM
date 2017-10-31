@@ -8,15 +8,15 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _mobxReact = require('mobx-react');
+
 var _page = require('./js/tpl/page');
 
 var _page2 = _interopRequireDefault(_page);
 
-var _mobxReact = require('mobx-react');
+var _Profile = require('./js/model/Profile');
 
-var _ModList = require('./js/model/ModList');
-
-var _ModList2 = _interopRequireDefault(_ModList);
+var _Profile2 = _interopRequireDefault(_Profile);
 
 var _Mod = require('./js/model/Mod');
 
@@ -24,16 +24,23 @@ var _Mod2 = _interopRequireDefault(_Mod);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let mod = new _Mod2.default();
-let modList = new _ModList2.default();
+window.storage = require('electron-storage');
 
-mod.loadDetails();
-modList.addMod(mod);
-modList.addMod(mod);
+let mod = new _Mod2.default();
+let profile = new _Profile2.default();
+
+for (let i = 1; i < 10; i++) {
+    let delay = Math.random() * (8000 - 20000) + 8000;
+    setTimeout(() => {
+        mod = new _Mod2.default();
+        mod.loadDetails();
+        profile.addMod(mod);
+    }, delay);
+}
 
 _reactDom2.default.render(_react2.default.createElement(
     _mobxReact.Provider,
-    { modList: modList },
+    { profile: profile },
     _react2.default.createElement(_page2.default, null)
 ), document.getElementById('root'));
 //# sourceMappingURL=main.js.map

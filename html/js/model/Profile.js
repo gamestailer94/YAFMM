@@ -95,6 +95,6 @@ let ModList = (_class = class ModList {
     initializer: function () {
         return "0.0.0";
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getLastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'getLastModId'), _class.prototype)), _class);
 exports.default = ModList;
-//# sourceMappingURL=ModList.js.map
+//# sourceMappingURL=Profile.js.map

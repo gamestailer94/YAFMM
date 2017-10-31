@@ -1,26 +1,29 @@
-'use strict'
+'use strict';
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Page from './js/tpl/page'
 import { Provider } from 'mobx-react'
-import {transaction } from 'mobx'
 
-import ModList from './js/model/ModList'
+window.storage = require('electron-storage');
+
+import Page from './js/tpl/page'
+import Profile from './js/model/Profile'
 import Mod from './js/model/Mod'
 
-let mod2 = new Mod()
-let mod = new Mod()
-let modList = new ModList
 
-mod.loadDetails()
-mod2.loadDetails()
-transaction(
-modList.addMod(mod)
-modList.addMod(mod2)
-)
+let mod = new Mod();
+let profile = new Profile;
+
+for(let i=1;i<10;i++){
+    let delay = Math.random() * (8000 - 20000) + 8000;
+    setTimeout(()=> {
+        mod = new Mod();
+        mod.loadDetails();
+        profile.addMod(mod);
+    }, delay)
+}
 
 ReactDOM.render(
-    <Provider modList={modList}>
+    <Provider profile={profile}>
         <Page/>
     </Provider>
-    , document.getElementById('root'))
+    , document.getElementById('root'));

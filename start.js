@@ -1,12 +1,13 @@
-'use strict'
+'use strict';
 
-const winston = require('winston')
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const _ = require('underscore')
-const url = require('url')
+const winston = require('winston');
+const {app, BrowserWindow} = require('electron');
+const path = require('path');
+const _ = require('underscore');
+const url = require('url');
+const windowStateKeeper = require('electron-window-state');
 
-const APP_DEBUG = true
+const APP_DEBUG = true;
 
 const loggerConfig = {
     transports: [
@@ -20,31 +21,45 @@ const loggerConfig = {
             label: "Main"
         })
     ]
-}
-const logger = winston.Logger(loggerConfig)
+};
+const logger = winston.Logger(loggerConfig);
 
 let windows = {};
-const windowOption = {
-    width: 1024,
-    height: 768,
-    'webPreferences': {
-        'devTools': APP_DEBUG
-    }
-}
+
 
 function start() {
-    windows.mainWindow = new BrowserWindow(windowOption)
+
+    let mainWindowState = windowStateKeeper({
+        defaultWidth: 1024,
+        defaultHeight: 768
+    });
+
+    const windowOption = {
+        'x': mainWindowState.x,
+        'y': mainWindowState.y,
+        'width': mainWindowState.width,
+        'height': mainWindowState.height,
+        'webPreferences': {
+            'devTools': APP_DEBUG
+        },
+        minWidth: 600,
+        minHeight: 400
+    };
+
+    windows.mainWindow = new BrowserWindow(windowOption);
     windows.mainWindow.loadURL(url.format({
         pathname: path.join(__dirname,'html', 'index.html'),
         protocol: 'file:',
         slashes: true
-    }))
+    }));
 
     if(APP_DEBUG)
     {
-        BrowserWindow.addDevToolsExtension(path.join(__dirname,'devtool'))
+        BrowserWindow.addDevToolsExtension(path.join(__dirname,'devtool'));
         windows.mainWindow.openDevTools()
     }
+
+    mainWindowState.manage(windows.mainWindow);
 
     windows.mainWindow.on('close', () => {
         delete windows.mainWindow
@@ -52,7 +67,7 @@ function start() {
 }
 
 
-app.on('ready', start)
+app.on('ready', start);
 
 app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
@@ -60,7 +75,7 @@ app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
-})
+});
 
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
@@ -68,5 +83,5 @@ app.on('activate', () => {
     if (_.isEmpty(windows)) {
         start();
     }
-})
+});
 

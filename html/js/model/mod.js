@@ -53,7 +53,7 @@ function _initializerWarningHelper(descriptor, context) {
 
 let Mod = (_class = class Mod {
 
-    constructor(id = null, url = '', modVersion = '', gameVersion = '') {
+    constructor(id = 0, url = '', modVersion = '', gameVersion = '') {
         _initDefineProp(this, 'id', _descriptor, this);
 
         _initDefineProp(this, 'name', _descriptor2, this);
@@ -79,14 +79,12 @@ let Mod = (_class = class Mod {
     }
 
     loadDetails() {
-        setTimeout(() => {
-            this.description = 'Test';
-            this.gameVersion = '0.15.0';
-            this.modVersion = '1.0.1';
-            this.fileName = 'test';
-            this.summary = 'test Summary';
-            this.name = 'Test Mod';
-        }, 1000);
+        this.description = 'Test';
+        this.gameVersion = '0.15.0';
+        this.modVersion = '1.0.1';
+        this.fileName = 'test';
+        this.summary = 'test Summary';
+        this.name = 'Test Mod';
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'id', [_mobx.observable], {
     enumerable: true,
@@ -119,4 +117,4 @@ let Mod = (_class = class Mod {
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'loadDetails', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadDetails'), _class.prototype)), _class);
 exports.default = Mod;
-//# sourceMappingURL=mod.js.map
+//# sourceMappingURL=Mod.js.map

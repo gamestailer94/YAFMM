@@ -1,13 +1,13 @@
 import React from 'react'
 import Menu from './menu'
-import Button from "./button";
-import ModList from "./ModList";
+import Button from "./button"
+import ModList from "./ModList"
 
 export default class Page extends React.Component {
     constructor(props){
-        super(props)
-        this.handleClick = this.handleClick.bind(this)
-        this.resetPage = this.resetPage.bind(this)
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.resetPage = this.resetPage.bind(this);
         this.state = {page:'main'}
     }
 
@@ -30,7 +30,7 @@ export default class Page extends React.Component {
     render() {
         let header,content;
         if(this.state.page === 'main'){
-            header = <Menu click={this.handleClick}/>
+            header = <Menu click={this.handleClick}/>;
             content = <div className="container"><ModList click={this.handleClick} /></div>
         }else{
             header = <div className="bg-dark w-100">
@@ -43,7 +43,9 @@ export default class Page extends React.Component {
         }
         return <div>
             {header}
-            {content}
+            <div className="content">
+                {content}
+            </div>
         </div>
     }
 

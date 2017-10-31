@@ -32,20 +32,24 @@ let Menu = class Menu extends _react2.default.Component {
                 { className: 'row my-1' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'mr-1 btn-group' },
-                    _react2.default.createElement(_button2.default, { type: 'primary', tooltip: 'Add', icon: 'plus', id: 'add', click: this.props.click }),
-                    _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Update', icon: 'download', id: 'update', click: this.props.click }),
-                    _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Upload to Cloud', icon: 'cloud-upload', id: 'upload', click: this.props.click })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'mr-1 btn-group' },
-                    _react2.default.createElement(_button2.default, { type: 'secondary', tooltip: 'Config', icon: 'wrench', id: 'config', click: this.props.click })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'mr-1 btn-group' },
-                    _react2.default.createElement(_button2.default, { type: 'success', tooltip: 'Start Game', icon: 'play', id: 'start', click: this.props.click })
+                    { className: 'col-12' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mr-1 btn-group' },
+                        _react2.default.createElement(_button2.default, { type: 'primary', tooltip: 'Add', icon: 'plus', id: 'add', click: this.props.click }),
+                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Update', icon: 'download', id: 'update', click: this.props.click }),
+                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Upload to Cloud', icon: 'cloud-upload', id: 'upload', click: this.props.click })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mr-1 btn-group' },
+                        _react2.default.createElement(_button2.default, { type: 'secondary', tooltip: 'Config', icon: 'wrench', id: 'config', click: this.props.click })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'mr-1 btn-group' },
+                        _react2.default.createElement(_button2.default, { type: 'success', tooltip: 'Start Game', icon: 'play', id: 'start', click: this.props.click })
+                    )
                 )
             )
         );
