@@ -27,11 +27,9 @@ let loggerConfig = {
 
 let logger = new (winston.Logger)(loggerConfig);
 
-
 let windows = {};
 
 function start() {
-
     let mainWindowState = windowStateKeeper({
         defaultWidth: 1024,
         defaultHeight: 768
@@ -50,6 +48,7 @@ function start() {
     };
 
     windows.mainWindow = new BrowserWindow(windowOption);
+    windows.mainWindow.setMenu(null);
     windows.mainWindow.loadURL(url.format({
         pathname: path.join(__dirname,'html', 'index.html'),
         protocol: 'file:',
