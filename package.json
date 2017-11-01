@@ -1,17 +1,13 @@
 {
-  "name": "factorio-mod-Manager",
+  "name": "YAFMM",
   "version": "1.0.0",
-  "description": "A Mod Manger / load for Factorio with Cloud Support",
+  "description": "",
   "main": "start.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "",
-  "keywords": [
-    "factorio",
-    "mode Manager",
-    "Launcher"
-  ],
+  "repository": "http://github.com/gamestailer94/YAFMM.git",
+  "keywords": [],
   "author": "Tim Platzke <tim@platzke.de>",
   "license": "MIT",
   "devDependencies": {
