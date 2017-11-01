@@ -65,11 +65,26 @@ let Profiles = (_class = class Profiles {
     }
 
     get activeProfile() {
-        return this.profiles.map(profile => {
+        let activeProfile = null;
+        this.profiles.map(profile => {
             if (profile.id === this.lastProfileId) {
-                return profile;
+                activeProfile = profile;
             }
-        })[0];
+        });
+        if (activeProfile === null) {
+            activeProfile = this.profiles[0];
+        }
+        return activeProfile;
+    }
+
+    get nextProfileId() {
+        let nextId = 0;
+        this.profiles.map(profile => {
+            if (profile.id >= nextId) {
+                nextId = profile.id + 1;
+            }
+        });
+        return nextId;
     }
 
     addProfile(profile) {
@@ -101,6 +116,24 @@ let Profiles = (_class = class Profiles {
         });
     }
 
+    removeProfile(id) {
+        let indexToRemove = 0;
+        this.profiles.map((profile, index) => {
+            if (profile.id === id) {
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [],
+            afterSlice = [];
+        if (indexToRemove > 0) {
+            beforeSlice = this.profiles.slice(0, indexToRemove);
+        }
+        if (indexToRemove < this.profiles.length) {
+            afterSlice = this.profiles.slice(indexToRemove + 1, this.profiles.length);
+        }
+        this.profiles = beforeSlice.concat(afterSlice);
+    }
+
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'profiles', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
@@ -111,6 +144,6 @@ let Profiles = (_class = class Profiles {
     initializer: function () {
         return 0;
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype)), _class);
 exports.default = Profiles;
 //# sourceMappingURL=Profiles.js.map

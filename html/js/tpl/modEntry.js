@@ -14,7 +14,7 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ModEntry = (_dec = (0, _mobxReact.inject)('profile'), _dec(_class = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.default.Component {
+let ModEntry = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.default.Component {
 
     constructor(props) {
         super(props);
@@ -31,7 +31,7 @@ let ModEntry = (_dec = (0, _mobxReact.inject)('profile'), _dec(_class = (0, _mob
 
     remove() {
         let id = this.props.mod.id;
-        this.props.profile.removeMod(id);
+        this.props.profiles.activeProfile.removeMod(id);
     }
 
     render() {
@@ -44,7 +44,7 @@ let ModEntry = (_dec = (0, _mobxReact.inject)('profile'), _dec(_class = (0, _mob
             _react2.default.createElement(
                 'div',
                 { className: 'float-right' },
-                _react2.default.createElement('i', { className: 'fa fa-fw fa-lg fa-trash', onClick: this.remove.bind(this) })
+                _react2.default.createElement('i', { className: 'fa fa-fw fa-lg fa-trash-o text-danger', onClick: this.remove.bind(this) })
             )
         );
     }

@@ -95,7 +95,7 @@ let Profile = (_class = class Profile {
 
     hydrate(data) {
         this.id = data.id;
-        this.name = data.id;
+        this.name = data.name;
         this.gameVersion = data.gameVersion;
         data.mods.map(mod => {
             let modObject = new _Mod2.default();
@@ -117,7 +117,7 @@ let Profile = (_class = class Profile {
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'name', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
-        return '';
+        return 'Default Profile';
     }
 }), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'gameVersion', [_mobx.observable], {
     enumerable: true,

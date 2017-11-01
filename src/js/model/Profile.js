@@ -6,7 +6,7 @@ class Profile {
 
     @observable mods = [];
     @observable id = 0;
-    @observable name = '';
+    @observable name = 'Default Profile';
     @observable gameVersion = "0.0.0";
 
     @action addMod(mod) {
@@ -36,7 +36,7 @@ class Profile {
 
     @action hydrate(data){
         this.id=data.id;
-        this.name=data.id;
+        this.name=data.name;
         this.gameVersion=data.gameVersion;
         data.mods.map(mod => {
             let modObject = new Mod();

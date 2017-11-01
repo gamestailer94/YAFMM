@@ -20,13 +20,17 @@ var _path2 = _interopRequireDefault(_path);
 
 var _mobx = require('mobx');
 
-var _page = require('./js/tpl/page');
+var _Page = require('./js/tpl/Page');
 
-var _page2 = _interopRequireDefault(_page);
+var _Page2 = _interopRequireDefault(_Page);
 
 var _Profiles = require('./js/model/Profiles');
 
 var _Profiles2 = _interopRequireDefault(_Profiles);
+
+var _Config = require('./js/model/Config');
+
+var _Config2 = _interopRequireDefault(_Config);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,18 +40,21 @@ const { app } = require('electron').remote;
 window.storage = require('electron-storage');
 const loggerConfig = {
     transports: [new _winston2.default.transports.File({
-        filename: _path2.default.join(app.getAppPath(), 'app.log'),
+        filename: _path2.default.join(app.getPath('userData'), 'app.log'),
         maxsize: 2048,
         json: false,
         maxFiles: 5,
         tailable: true,
         zippedArchive: true,
         label: "Render"
-        // humanReadableUnhandledException: true,
-        // handleExceptions: true
     })],
     exitOnError: false
 };
+
+if (process.env.NODE_ENV === 'production') {
+    loggerConfig.transports[0].humanReadableUnhandledException = true;
+    loggerConfig.transports[0].handleExceptions = true;
+}
 
 _winston2.default.Logger(loggerConfig);
 window.logger = _winston2.default;
@@ -58,7 +65,8 @@ window.logger.error = err => {
     window.logger.oldError(err);
 };
 
-let profiles = (0, _mobx.observable)(new _Profiles2.default());
+let config = new _Config2.default();
+let profiles = window.profiles = (0, _mobx.observable)(new _Profiles2.default());
 
 profiles.loadProfiles().then(() => {
     (0, _mobx.autorunAsync)(() => {
@@ -67,8 +75,8 @@ profiles.loadProfiles().then(() => {
 }).then(() => {
     _reactDom2.default.render(_react2.default.createElement(
         _mobxReact.Provider,
-        { profile: profiles.activeProfile, profiles: profiles },
-        _react2.default.createElement(_page2.default, null)
+        { profiles: profiles, config: config },
+        _react2.default.createElement(_Page2.default, null)
     ), document.getElementById('root'));
 });
 //# sourceMappingURL=main.js.map

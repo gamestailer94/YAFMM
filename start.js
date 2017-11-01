@@ -43,7 +43,7 @@ function start() {
         'webPreferences': {
             'devTools': APP_DEBUG
         },
-        minWidth: 600,
+        minWidth: 1000,
         minHeight: 400
     };
 

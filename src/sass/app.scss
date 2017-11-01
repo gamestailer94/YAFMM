@@ -20,11 +20,16 @@ $sizes: (
 
 .content {
   padding-top: 46px;
+  .progress.sub-menu-loader {
+    height: 2px;
+  }
+
 }
 
 #root {
   user-select: none;
 }
+
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "font-awsome/font-awesome";

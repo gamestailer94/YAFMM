@@ -1,10 +1,14 @@
 import React from 'react'
-export default class Button extends React.Component {
+import {inject, observer} from 'mobx-react'
 
-    constructor(props){
-        super(props)
-        this.state = {'working':false}
-        this.handleClick = this.handleClick.bind(this)
+@inject('config') @observer
+class Button extends React.Component {
+
+    constructor(props) {
+        super(props);
+        if(typeof(props.config.btn[props.id]) === 'undefined'){
+            props.config.addButton(props.id);
+        }
     }
 
     getClassName() {
@@ -12,8 +16,8 @@ export default class Button extends React.Component {
     }
 
     getIconName() {
-        let prefix = "fa fa-lg fa-fw fa-"
-        if(this.state.working){
+        let prefix = "fa fa-lg fa-fw fa-";
+        if(this.props.config.btn[this.props.id].working){
             return prefix+"circle-o-notch fa-spin"
         }else {
             return prefix + this.props.icon
@@ -21,17 +25,15 @@ export default class Button extends React.Component {
     }
 
     handleClick(){
-        if(typeof(this.props.click) === "function")
-        {
-            this.props.click(this)
-        }
+        this.props.click(this)
     }
 
     render() {
-        return <button className={this.getClassName()} onClick={this.handleClick}
+        return <button className={this.getClassName()} onClick={this.handleClick.bind(this)}
                        data-toggle="tooltip" data-placement="bottom" title={this.props.tooltip}>
             <i className={this.getIconName()} />
         </button>
     }
 }
 
+export default Button

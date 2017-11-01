@@ -5,17 +5,25 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _dec, _class;
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _button = require('./button.js');
+var _MainMenu = require('./MainMenu');
 
-var _button2 = _interopRequireDefault(_button);
+var _MainMenu2 = _interopRequireDefault(_MainMenu);
+
+var _BackMenu = require('./BackMenu');
+
+var _BackMenu2 = _interopRequireDefault(_BackMenu);
+
+var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Menu = class Menu extends _react2.default.Component {
+let Menu = (_dec = (0, _mobxReact.inject)(['config']), _dec(_class = (0, _mobxReact.observer)(_class = class Menu extends _react2.default.Component {
     componentDidMount() {
         $('menu [data-toggle="tooltip"]').tooltip();
     }
@@ -23,37 +31,25 @@ let Menu = class Menu extends _react2.default.Component {
         $('menu [data-toggle="tooltip"]').tooltip('dispose');
     }
 
+    getMenu() {
+        if (this.props.config.page === 'main') {
+            return _react2.default.createElement(_MainMenu2.default, null);
+        } else {
+            return _react2.default.createElement(_BackMenu2.default, null);
+        }
+    }
+
     render() {
         return _react2.default.createElement(
-            'menu',
+            'div',
             { className: 'position-fixed bg-dark w-100 menu mt-0 t-0' },
             _react2.default.createElement(
                 'div',
-                { className: 'row my-1' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'col-12' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'mr-1 btn-group' },
-                        _react2.default.createElement(_button2.default, { type: 'primary', tooltip: 'Add', icon: 'plus', id: 'add', click: this.props.click }),
-                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Update', icon: 'arrow-up', id: 'update', click: this.props.click }),
-                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Upload to Cloud', icon: 'cloud-upload', id: 'upload', click: this.props.click })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'mr-1 btn-group' },
-                        _react2.default.createElement(_button2.default, { type: 'secondary', tooltip: 'Config', icon: 'wrench', id: 'config', click: this.props.click })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'mr-1 btn-group' },
-                        _react2.default.createElement(_button2.default, { type: 'success', tooltip: 'Start Game', icon: 'play', id: 'start', click: this.props.click })
-                    )
-                )
+                { className: 'container' },
+                this.getMenu()
             )
         );
     }
-};
+}) || _class) || _class);
 exports.default = Menu;
-//# sourceMappingURL=menu.js.map
+//# sourceMappingURL=Menu.js.map

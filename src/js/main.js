@@ -11,19 +11,22 @@ window.storage = require('electron-storage');
 const loggerConfig = {
     transports: [
         new logger.transports.File({
-            filename: path.join(app.getAppPath(),'app.log'),
+            filename: path.join(app.getPath('userData'),'app.log'),
             maxsize: 2048,
             json: false,
             maxFiles: 5,
             tailable: true,
             zippedArchive: true,
-            label: "Render",
-            // humanReadableUnhandledException: true,
-            // handleExceptions: true
+            label: "Render"
         })
     ],
     exitOnError: false
 };
+
+if(process.env.NODE_ENV === 'production'){
+    loggerConfig.transports[0].humanReadableUnhandledException = true;
+    loggerConfig.transports[0].handleExceptions = true;
+}
 
 logger.Logger(loggerConfig);
 window.logger = logger;
@@ -34,10 +37,12 @@ window.logger.error = (err) => {
     window.logger.oldError(err);
 };
 
-import Page from './js/tpl/page'
+import Page from './js/tpl/Page'
 import Profiles from './js/model/Profiles'
+import Config from './js/model/Config'
 
-let profiles = observable( new Profiles());
+let config = new Config();
+let profiles = window.profiles = observable( new Profiles());
 
 profiles.loadProfiles()
     .then(()=>{
@@ -47,7 +52,7 @@ profiles.loadProfiles()
     })
     .then(() => {
     ReactDOM.render(
-        <Provider profile={profiles.activeProfile} profiles={profiles}>
+        <Provider profiles={profiles} config={config}>
             <Page/>
         </Provider>
         , document.getElementById('root'));

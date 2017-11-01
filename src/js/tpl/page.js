@@ -1,67 +1,34 @@
 import React from 'react'
-import Menu from './menu'
-import Button from "./button"
+import Menu from './Menu'
 import ModList from "./ModList"
-import Mod from '../model/Mod'
-import {inject} from "mobx-react";
+import {inject, observer} from "mobx-react";
+import ProfileConfig from './ProfileConfig'
+import Loader from './Loader'
 
 
-@inject(['profile'])
+@inject(['config']) @observer
 class Page extends React.Component {
-    constructor(props){
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-        this.resetPage = this.resetPage.bind(this);
-        this.state = {page:'main'}
-    }
-
-    handleClick(buttonEl) {
-        switch (buttonEl.props.id) {
-            case 'config':
-                this.setState({page: 'config'});
-                break;
-            case 'add':
-                let mod = new Mod();
-                mod.loadDetails('test');
-                this.props.profile.addMod(mod);
-                break;
-            default:
-                buttonEl.setState({working: !buttonEl.state.working})
-                break;
-        }
-    }
-
-    resetPage(){
-        this.setState({page: 'main'})
-    }
-
-    backButton(){
-        return <Button type="secondary" icon="arrow-left" click={this.resetPage}/>
-    }
-
-
     render() {
-        let header,content;
-        if(this.state.page === 'main'){
-            header = <Menu click={this.handleClick}/>;
-            content = <div className="container"><ModList click={this.handleClick} /></div>
-        }else{
-            header = <div className="bg-dark w-100">
-                <div className="container">
-                    <div className="row py-1">
-                        {this.backButton()}
-                    </div>
-                </div>
-            </div>
+        let content;
+       switch(this.props.config.page){
+           case 'editProfile':
+               content = <ProfileConfig/>
+               break;
+           case 'main':
+           default:
+               content = <ModList/>;
+               break;
         }
         return <div>
-            {header}
+            <Menu/>
             <div className="content">
-                {content}
+                <Loader />
+                <div className="container">
+                    {content}
+                </div>
             </div>
         </div>
     }
-
 }
 
 export default Page;

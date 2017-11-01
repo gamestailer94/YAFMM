@@ -8,11 +8,27 @@ class Profiles {
     @observable lastProfileId = 0;
 
     @computed get activeProfile(){
-        return this.profiles.map(profile => {
+        let activeProfile = null;
+        this.profiles.map(profile => {
             if(profile.id === this.lastProfileId){
-                return profile;
+                activeProfile = profile
             }
-        })[0];
+        });
+        if(activeProfile === null)
+        {
+            activeProfile = this.profiles[0];
+        }
+        return activeProfile;
+    }
+
+    @computed get nextProfileId(){
+        let nextId = 0;
+        this.profiles.map(profile => {
+            if(profile.id >= nextId){
+                nextId = profile.id+1
+            }
+        });
+        return nextId;
     }
 
     @action addProfile(profile){
@@ -42,6 +58,23 @@ class Profiles {
                 }
             });
         })
+    }
+
+    @action removeProfile(id){
+        let indexToRemove = 0;
+        this.profiles.map((profile, index) => {
+            if(profile.id === id){
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [], afterSlice = [];
+        if(indexToRemove > 0){
+            beforeSlice = this.profiles.slice(0,indexToRemove);
+        }
+        if(indexToRemove < this.profiles.length){
+            afterSlice = this.profiles.slice(indexToRemove+1,this.profiles.length);
+        }
+        this.profiles = beforeSlice.concat(afterSlice);
     }
 
 }

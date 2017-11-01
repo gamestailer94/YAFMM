@@ -1,7 +1,7 @@
 import React from 'react'
 import {observer, inject} from 'mobx-react'
 
-@inject('profile') @observer
+@inject('profiles') @observer
 class ModEntry extends React.Component {
 
     constructor(props){
@@ -22,14 +22,14 @@ class ModEntry extends React.Component {
 
     remove() {
         let id = this.props.mod.id;
-        this.props.profile.removeMod(id);
+        this.props.profiles.activeProfile.removeMod(id);
     }
 
     render(){
         return <li className="list-group-item">
             <i onClick={this.changeActive.bind(this)} className={this.getIconClassName()}/>{' '}{this.props.mod.name}
             <div className="float-right">
-            <i className="fa fa-fw fa-lg fa-trash" onClick={this.remove.bind(this)} />
+            <i className="fa fa-fw fa-lg fa-trash-o text-danger" onClick={this.remove.bind(this)} />
             </div>
         </li>
     }
