@@ -37,7 +37,7 @@ let Menu = class Menu extends _react2.default.Component {
                         'div',
                         { className: 'mr-1 btn-group' },
                         _react2.default.createElement(_button2.default, { type: 'primary', tooltip: 'Add', icon: 'plus', id: 'add', click: this.props.click }),
-                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Update', icon: 'download', id: 'update', click: this.props.click }),
+                        _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Update', icon: 'arrow-up', id: 'update', click: this.props.click }),
                         _react2.default.createElement(_button2.default, { type: 'outline-success', tooltip: 'Upload to Cloud', icon: 'cloud-upload', id: 'upload', click: this.props.click })
                     ),
                     _react2.default.createElement(

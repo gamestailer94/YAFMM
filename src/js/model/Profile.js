@@ -26,6 +26,14 @@ class Profile {
         return this.mods.length > 0;
     }
 
+    @action removeMod(id){
+        this.mods.map((mod, index) => {
+            if(mod.id  === id){
+                this.mods.splice(index, 1);
+            }
+        })
+    }
+
     @action hydrate(data){
         this.id=data.id;
         this.name=data.id;

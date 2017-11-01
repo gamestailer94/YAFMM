@@ -30,7 +30,6 @@ class Profiles {
                         }
                         this.profiles = [];
                         data.profiles.map(profile => {
-                            console.log(profile.mods);
                             let profileObject = new Profile();
                             profileObject.hydrate(profile);
                             this.profiles.push(profileObject);

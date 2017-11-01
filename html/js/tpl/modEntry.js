@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _class;
+var _dec, _class;
 
 var _react = require('react');
 
@@ -14,7 +14,7 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ModEntry = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.default.Component {
+let ModEntry = (_dec = (0, _mobxReact.inject)('profile'), _dec(_class = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.default.Component {
 
     constructor(props) {
         super(props);
@@ -24,21 +24,30 @@ let ModEntry = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.
         if (this.props.mod.active) return 'fa fa-fw fa-lg fa-check-square';else return 'fa fa-fw fa-lg fa-square-o';
     }
 
-    handleClick() {
+    changeActive() {
         let mod = this.props.mod;
         mod.active = !this.props.mod.active;
+    }
+
+    remove() {
+        let id = this.props.mod.id;
+        this.props.profile.removeMod(id);
     }
 
     render() {
         return _react2.default.createElement(
             'li',
             { className: 'list-group-item' },
-            _react2.default.createElement('i', { onClick: this.handleClick.bind(this), className: this.getIconClassName() }),
+            _react2.default.createElement('i', { onClick: this.changeActive.bind(this), className: this.getIconClassName() }),
             ' ',
-            this.props.mod.name
+            this.props.mod.name,
+            _react2.default.createElement(
+                'div',
+                { className: 'float-right' },
+                _react2.default.createElement('i', { className: 'fa fa-fw fa-lg fa-trash', onClick: this.remove.bind(this) })
+            )
         );
     }
-}) || _class;
-
+}) || _class) || _class);
 exports.default = ModEntry;
 //# sourceMappingURL=ModEntry.js.map

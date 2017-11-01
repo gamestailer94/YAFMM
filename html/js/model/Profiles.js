@@ -87,7 +87,6 @@ let Profiles = (_class = class Profiles {
                         }
                         this.profiles = [];
                         data.profiles.map(profile => {
-                            console.log(profile.mods);
                             let profileObject = new _profile2.default();
                             profileObject.hydrate(profile);
                             this.profiles.push(profileObject);

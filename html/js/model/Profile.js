@@ -85,6 +85,14 @@ let Profile = (_class = class Profile {
         return this.mods.length > 0;
     }
 
+    removeMod(id) {
+        this.mods.map((mod, index) => {
+            if (mod.id === id) {
+                this.mods.splice(index, 1);
+            }
+        });
+    }
+
     hydrate(data) {
         this.id = data.id;
         this.name = data.id;
@@ -116,6 +124,6 @@ let Profile = (_class = class Profile {
     initializer: function () {
         return "0.0.0";
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'lastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'lastModId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hasMods', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'hasMods'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'lastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'lastModId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hasMods', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'hasMods'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
 exports.default = Profile;
 //# sourceMappingURL=Profile.js.map

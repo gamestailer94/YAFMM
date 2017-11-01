@@ -15,7 +15,7 @@ export default class Menu extends React.Component
                 <div className="col-12">
                     <div className="mr-1 btn-group">
                         <Button type='primary' tooltip="Add" icon="plus" id="add" click={this.props.click}/>
-                        <Button type='outline-success' tooltip="Update" icon="download" id="update" click={this.props.click}/>
+                        <Button type='outline-success' tooltip="Update" icon="arrow-up" id="update" click={this.props.click}/>
                         <Button type='outline-success' tooltip="Upload to Cloud" icon="cloud-upload" id="upload" click={this.props.click}/>
                     </div>
                     <div className="mr-1 btn-group">
