@@ -32,8 +32,8 @@ let ModEntry = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.
     render() {
         return _react2.default.createElement(
             'li',
-            { onClick: this.handleClick.bind(this), className: 'list-group-item' },
-            _react2.default.createElement('i', { className: this.getIconClassName() }),
+            { className: 'list-group-item' },
+            _react2.default.createElement('i', { onClick: this.handleClick.bind(this), className: this.getIconClassName() }),
             ' ',
             this.props.mod.name
         );

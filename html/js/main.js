@@ -10,37 +10,65 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _mobxReact = require('mobx-react');
 
+var _winston = require('winston');
+
+var _winston2 = _interopRequireDefault(_winston);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _mobx = require('mobx');
+
 var _page = require('./js/tpl/page');
 
 var _page2 = _interopRequireDefault(_page);
 
-var _Profile = require('./js/model/Profile');
+var _Profiles = require('./js/model/Profiles');
 
-var _Profile2 = _interopRequireDefault(_Profile);
-
-var _Mod = require('./js/model/Mod');
-
-var _Mod2 = _interopRequireDefault(_Mod);
+var _Profiles2 = _interopRequireDefault(_Profiles);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const { app } = require('electron').remote;
+
+
 window.storage = require('electron-storage');
+const loggerConfig = {
+    transports: [new _winston2.default.transports.File({
+        filename: _path2.default.join(app.getAppPath(), 'app.log'),
+        maxsize: 2048,
+        json: false,
+        maxFiles: 5,
+        tailable: true,
+        zippedArchive: true,
+        label: "Render"
+        // humanReadableUnhandledException: true,
+        // handleExceptions: true
+    })],
+    exitOnError: false
+};
 
-let mod = new _Mod2.default();
-let profile = new _Profile2.default();
+_winston2.default.Logger(loggerConfig);
+window.logger = _winston2.default;
+window.logger.oldError = window.logger.error;
 
-for (let i = 1; i < 10; i++) {
-    let delay = Math.random() * (8000 - 20000) + 8000;
-    setTimeout(() => {
-        mod = new _Mod2.default();
-        mod.loadDetails();
-        profile.addMod(mod);
-    }, delay);
-}
+window.logger.error = err => {
+    console.log(err);
+    window.logger.oldError(err);
+};
 
-_reactDom2.default.render(_react2.default.createElement(
-    _mobxReact.Provider,
-    { profile: profile },
-    _react2.default.createElement(_page2.default, null)
-), document.getElementById('root'));
+let profiles = (0, _mobx.observable)(new _Profiles2.default());
+
+profiles.loadProfiles().then(() => {
+    (0, _mobx.autorunAsync)(() => {
+        window.storage.set('profiles', profiles).catch(window.logger.error);
+    }, 500);
+}).then(() => {
+    _reactDom2.default.render(_react2.default.createElement(
+        _mobxReact.Provider,
+        { profile: profiles.activeProfile, profiles: profiles },
+        _react2.default.createElement(_page2.default, null)
+    ), document.getElementById('root'));
+});
 //# sourceMappingURL=main.js.map

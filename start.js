@@ -1,31 +1,34 @@
 'use strict';
 
-const winston = require('winston');
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const _ = require('underscore');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
+const winston = require('winston');
 
-const APP_DEBUG = true;
+const APP_DEBUG = process.env.NODE_ENV !== 'production';
 
-const loggerConfig = {
+let loggerConfig = {
     transports: [
         new (winston.transports.File)({
-            filename: path.join(app.getAppPath(),'main.log'),
+            filename: path.join(app.getAppPath(),'app.log'),
             maxsize: 2048,
             json: false,
             maxFiles: 5,
             tailable: true,
             zippedArchive: true,
-            label: "Main"
+            label: "Main",
+            humanReadableUnhandledException: true,
+            handleExceptions: true
         })
     ]
 };
-const logger = winston.Logger(loggerConfig);
+
+let logger = new (winston.Logger)(loggerConfig);
+
 
 let windows = {};
-
 
 function start() {
 

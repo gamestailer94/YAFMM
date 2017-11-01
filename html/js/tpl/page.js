@@ -3,7 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = undefined;
+
+var _dec, _class;
 
 var _react = require('react');
 
@@ -21,9 +22,15 @@ var _ModList = require('./ModList');
 
 var _ModList2 = _interopRequireDefault(_ModList);
 
+var _Mod = require('../model/Mod');
+
+var _Mod2 = _interopRequireDefault(_Mod);
+
+var _mobxReact = require('mobx-react');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Page = class Page extends _react2.default.Component {
+let Page = (_dec = (0, _mobxReact.inject)(['profile']), _dec(_class = class Page extends _react2.default.Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -32,10 +39,19 @@ let Page = class Page extends _react2.default.Component {
     }
 
     handleClick(buttonEl) {
-        if (buttonEl.props.id === 'config') {
-            this.setState({ page: 'config' });
+        switch (buttonEl.props.id) {
+            case 'config':
+                this.setState({ page: 'config' });
+                break;
+            case 'add':
+                let mod = new _Mod2.default();
+                mod.loadDetails('test');
+                this.props.profile.addMod(mod);
+                break;
+            default:
+                buttonEl.setState({ working: !buttonEl.state.working });
+                break;
         }
-        buttonEl.setState({ working: !buttonEl.state.working });
     }
 
     resetPage() {
@@ -82,6 +98,6 @@ let Page = class Page extends _react2.default.Component {
         );
     }
 
-};
+}) || _class);
 exports.default = Page;
 //# sourceMappingURL=page.js.map

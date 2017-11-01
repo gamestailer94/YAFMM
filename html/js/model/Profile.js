@@ -8,6 +8,12 @@ var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4
 
 var _mobx = require('mobx');
 
+var _Mod = require('./Mod');
+
+var _Mod2 = _interopRequireDefault(_Mod);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
     Object.defineProperty(target, property, {
@@ -51,7 +57,7 @@ function _initializerWarningHelper(descriptor, context) {
     throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
 }
 
-let ModList = (_class = class ModList {
+let Profile = (_class = class Profile {
     constructor() {
         _initDefineProp(this, 'mods', _descriptor, this);
 
@@ -63,16 +69,31 @@ let ModList = (_class = class ModList {
     }
 
     addMod(mod) {
-        mod.id = this.getLastModId() + 1;
+        mod.id = this.lastModId + 1;
         this.mods.push(mod);
     }
 
-    getLastModId() {
+    get lastModId() {
         let lastId = 0;
         this.mods.map(mod => {
             lastId = mod.id;
         });
         return lastId;
+    }
+
+    get hasMods() {
+        return this.mods.length > 0;
+    }
+
+    hydrate(data) {
+        this.id = data.id;
+        this.name = data.id;
+        this.gameVersion = data.gameVersion;
+        data.mods.map(mod => {
+            let modObject = new _Mod2.default();
+            modObject.hydrate(mod);
+            this.mods.push(mod);
+        });
     }
 
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'mods', [_mobx.observable], {
@@ -95,6 +116,6 @@ let ModList = (_class = class ModList {
     initializer: function () {
         return "0.0.0";
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'getLastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'getLastModId'), _class.prototype)), _class);
-exports.default = ModList;
+}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'lastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'lastModId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hasMods', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'hasMods'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
+exports.default = Profile;
 //# sourceMappingURL=Profile.js.map

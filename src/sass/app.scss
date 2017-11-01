@@ -22,6 +22,10 @@ $sizes: (
   padding-top: 46px;
 }
 
+#root {
+  user-select: none;
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import "font-awsome/font-awesome";
 @import "loader";

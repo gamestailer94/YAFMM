@@ -2,8 +2,12 @@ import React from 'react'
 import Menu from './menu'
 import Button from "./button"
 import ModList from "./ModList"
+import Mod from '../model/Mod'
+import {inject} from "mobx-react";
 
-export default class Page extends React.Component {
+
+@inject(['profile'])
+class Page extends React.Component {
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -12,10 +16,19 @@ export default class Page extends React.Component {
     }
 
     handleClick(buttonEl) {
-        if(buttonEl.props.id === 'config'){
-            this.setState({page: 'config'})
+        switch (buttonEl.props.id) {
+            case 'config':
+                this.setState({page: 'config'});
+                break;
+            case 'add':
+                let mod = new Mod();
+                mod.loadDetails('test');
+                this.props.profile.addMod(mod);
+                break;
+            default:
+                buttonEl.setState({working: !buttonEl.state.working})
+                break;
         }
-        buttonEl.setState({working: !buttonEl.state.working})
     }
 
     resetPage(){
@@ -50,3 +63,5 @@ export default class Page extends React.Component {
     }
 
 }
+
+export default Page;

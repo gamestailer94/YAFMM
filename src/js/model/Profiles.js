@@ -1,29 +1,51 @@
 'use strict';
 import { action, observable, autorun, computed } from 'mobx'
-import fs from "fs";
-import path from 'path';
+import Profile from './profile'
+
 
 class Profiles {
-    @observable profiles = [];
-    @observable filter = '';
+    @observable profiles = [new Profile()];
     @observable lastProfileId = 0;
 
-    @computed get filteredProfile() {
-        let regex = new RegExp(this.filter, "i");
-        return this.profiles.filter(profile => !this.filter || regex.test(this.filter));
+    @computed get activeProfile(){
+        return this.profiles.map(profile => {
+            if(profile.id === this.lastProfileId){
+                return profile;
+            }
+        })[0];
     }
 
-    @computed get lastProfile(){
-        return this.profiles.filter(profile => profile.id === this.lastProfileId);
-    }
-
-    @action set addProfile(profile){
+    @action addProfile(profile){
         this.profiles.push(profile);
     }
 
     @action loadProfiles() {
-        fs.readFile(path.join())
+        return new Promise((resolve,reject) => {
+            window.storage.isPathExists('profiles.json', (exists) => {
+                if(exists) {
+                    window.storage.get('profiles', (err,data) =>{
+                        if(err){
+                            window.logger.error(err);
+                            reject();
+                        }
+                        this.profiles = [];
+                        data.profiles.map(profile => {
+                            console.log(profile.mods);
+                            let profileObject = new Profile();
+                            profileObject.hydrate(profile);
+                            this.profiles.push(profileObject);
+                        });
+                        this.lastProfileId = data.lastProfileId;
+                        resolve();
+                    })
+                }else {
+                    resolve();
+                }
+            });
+        })
     }
+
 }
+
 
 export default Profiles

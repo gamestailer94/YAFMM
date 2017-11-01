@@ -21,8 +21,8 @@ class ModEntry extends React.Component {
     }
 
     render(){
-        return <li onClick={this.handleClick.bind(this)} className="list-group-item">
-            <i className={this.getIconClassName()}/>{' '}{this.props.mod.name}
+        return <li className="list-group-item">
+            <i onClick={this.handleClick.bind(this)} className={this.getIconClassName()}/>{' '}{this.props.mod.name}
         </li>
     }
 }

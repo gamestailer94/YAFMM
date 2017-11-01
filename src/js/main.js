@@ -1,29 +1,54 @@
 'use strict';
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { Provider } from 'mobx-react'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
+import logger from 'winston';
+import path from 'path';
+const { app } = require('electron').remote;
+import {autorunAsync, observable} from "mobx";
 
 window.storage = require('electron-storage');
+const loggerConfig = {
+    transports: [
+        new logger.transports.File({
+            filename: path.join(app.getAppPath(),'app.log'),
+            maxsize: 2048,
+            json: false,
+            maxFiles: 5,
+            tailable: true,
+            zippedArchive: true,
+            label: "Render",
+            // humanReadableUnhandledException: true,
+            // handleExceptions: true
+        })
+    ],
+    exitOnError: false
+};
+
+logger.Logger(loggerConfig);
+window.logger = logger;
+window.logger.oldError = window.logger.error;
+
+window.logger.error = (err) => {
+    console.log(err);
+    window.logger.oldError(err);
+};
 
 import Page from './js/tpl/page'
-import Profile from './js/model/Profile'
-import Mod from './js/model/Mod'
+import Profiles from './js/model/Profiles'
 
+let profiles = observable( new Profiles());
 
-let mod = new Mod();
-let profile = new Profile;
-
-for(let i=1;i<10;i++){
-    let delay = Math.random() * (8000 - 20000) + 8000;
-    setTimeout(()=> {
-        mod = new Mod();
-        mod.loadDetails();
-        profile.addMod(mod);
-    }, delay)
-}
-
-ReactDOM.render(
-    <Provider profile={profile}>
-        <Page/>
-    </Provider>
-    , document.getElementById('root'));
+profiles.loadProfiles()
+    .then(()=>{
+        autorunAsync(() => {
+            window.storage.set('profiles', profiles).catch(window.logger.error);
+        },500);
+    })
+    .then(() => {
+    ReactDOM.render(
+        <Provider profile={profiles.activeProfile} profiles={profiles}>
+            <Page/>
+        </Provider>
+        , document.getElementById('root'));
+});

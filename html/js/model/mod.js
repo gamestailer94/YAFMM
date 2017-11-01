@@ -52,8 +52,7 @@ function _initializerWarningHelper(descriptor, context) {
 }
 
 let Mod = (_class = class Mod {
-
-    constructor(id = 0, url = '', modVersion = '', gameVersion = '') {
+    constructor() {
         _initDefineProp(this, 'id', _descriptor, this);
 
         _initDefineProp(this, 'name', _descriptor2, this);
@@ -71,20 +70,28 @@ let Mod = (_class = class Mod {
         _initDefineProp(this, 'fileName', _descriptor8, this);
 
         _initDefineProp(this, 'active', _descriptor9, this);
-
-        this.id = id;
-        this.url = url;
-        this.modVersion = modVersion;
-        this.gameVersion = gameVersion;
     }
 
-    loadDetails() {
+    loadDetails(url) {
         this.description = 'Test';
         this.gameVersion = '0.15.0';
         this.modVersion = '1.0.1';
         this.fileName = 'test';
         this.summary = 'test Summary';
         this.name = 'Test Mod';
+        this.url = url;
+    }
+
+    hydrate(data) {
+        this.id = data.id;
+        this.name = data.name;
+        this.url = data.url;
+        this.description = data.description;
+        this.summary = data.summary;
+        this.gameVersion = data.gameVersion;
+        this.modVersion = data.modVersion;
+        this.fileName = data.fileName;
+        this.active = data.active;
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'id', [_mobx.observable], {
     enumerable: true,
@@ -115,6 +122,6 @@ let Mod = (_class = class Mod {
     initializer: function () {
         return true;
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'loadDetails', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadDetails'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'loadDetails', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadDetails'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
 exports.default = Mod;
 //# sourceMappingURL=Mod.js.map
