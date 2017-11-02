@@ -6,7 +6,7 @@ class Loader extends React.Component {
 
     getLoader(){
         if(this.props.state.working){
-            return <div className="progress-bar progress-bar-striped progress-bar-animated bg-sucess w-100" />
+            return <div className="progress-bar progress-bar-striped progress-bar-animated bg-primary w-100" />
         }
     }
 

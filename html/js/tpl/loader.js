@@ -18,7 +18,7 @@ let Loader = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxRea
 
     getLoader() {
         if (this.props.state.working) {
-            return _react2.default.createElement('div', { className: 'progress-bar progress-bar-striped progress-bar-animated bg-sucess w-100' });
+            return _react2.default.createElement('div', { className: 'progress-bar progress-bar-striped progress-bar-animated bg-primary w-100' });
         }
     }
 

@@ -41,7 +41,7 @@ import Page from './js/tpl/Page'
 import Config from './js/model/Config'
 import State from './js/model/State'
 
-let state = new State();
+let state = window.state = new State();
 let config = window.config = observable( new Config());
 
 config.loadProfiles()

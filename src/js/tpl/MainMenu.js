@@ -30,7 +30,7 @@ class MainMenu extends React.Component {
     }
 
     changeProfile(e){
-        this.props.config.lastProfileId = parseInt(e.target.value);
+        this.props.config.lastProfileId = parseInt($(e.target).data('id'));
     }
 
     render(){
@@ -55,15 +55,18 @@ class MainMenu extends React.Component {
                 </div>
             </div>
             <div className="col-4">
-                <div className="mr-1 input-group">
-                    <select className="form-control" value={this.props.config.lastProfileId} onChange={this.changeProfile.bind(this)}>
-                        {this.props.config.profiles.map(profile => {
-                            return <option key={profile.id} value={profile.id}>{profile.name}</option>
-                        })}
-                    </select>
-                    <span className="input-group-btn">
-                        <Button type="default" tooltip="Edit Profile" icon="cog" id="editProfile" click={this.handleClick}/>
-                    </span>
+                <div className="btn-group float-right">
+                    <div className="btn-group">
+                        <button className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">{this.props.config.activeProfile.name}</button>
+                        <div className="dropdown-menu">
+                            {this.props.config.profiles.map(profile => {
+                                let className = this.props.config.activeProfile.id === profile.id?'active':'';
+                                className += ' dropdown-item';
+                                return <button key={profile.id} className={className} data-id={profile.id} onClick={this.changeProfile.bind(this)}>{profile.name}</button>
+                            })}
+                        </div>
+                    </div>
+                    <Button type="default" tooltip="Edit Profile" icon="cog" id="editProfile" click={this.handleClick}/>
                 </div>
             </div>
         </div>

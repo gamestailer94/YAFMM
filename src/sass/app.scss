@@ -1,3 +1,6 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "font-awsome/font-awesome";
+
 $sizes: (
   5: 5%,
   5-r: 5rem,
@@ -16,12 +19,15 @@ $sizes: (
 
 .menu {
   height: 46px;
+  z-index: 999;
 }
 
 .content {
   padding-top: 46px;
   .progress.sub-menu-loader {
-    height: 2px;
+    height: 5px;
+    background: $white;
+    border-radius: 0;
   }
 
 }
@@ -31,6 +37,4 @@ $sizes: (
 }
 
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
-@import "font-awsome/font-awesome";
 @import "loader";

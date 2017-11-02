@@ -48,7 +48,7 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.
     }
 
     changeProfile(e) {
-        this.props.config.lastProfileId = parseInt(e.target.value);
+        this.props.config.lastProfileId = parseInt($(e.target).data('id'));
     }
 
     render() {
@@ -96,23 +96,30 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.
                 { className: 'col-4' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'mr-1 input-group' },
+                    { className: 'btn-group float-right' },
                     _react2.default.createElement(
-                        'select',
-                        { className: 'form-control', value: this.props.config.lastProfileId, onChange: this.changeProfile.bind(this) },
-                        this.props.config.profiles.map(profile => {
-                            return _react2.default.createElement(
-                                'option',
-                                { key: profile.id, value: profile.id },
-                                profile.name
-                            );
-                        })
+                        'div',
+                        { className: 'btn-group' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn btn-secondary dropdown-toggle', 'data-toggle': 'dropdown' },
+                            this.props.config.activeProfile.name
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'dropdown-menu' },
+                            this.props.config.profiles.map(profile => {
+                                let className = this.props.config.activeProfile.id === profile.id ? 'active' : '';
+                                className += ' dropdown-item';
+                                return _react2.default.createElement(
+                                    'button',
+                                    { key: profile.id, className: className, 'data-id': profile.id, onClick: this.changeProfile.bind(this) },
+                                    profile.name
+                                );
+                            })
+                        )
                     ),
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'input-group-btn' },
-                        _react2.default.createElement(_Button2.default, { type: 'default', tooltip: 'Edit Profile', icon: 'cog', id: 'editProfile', click: this.handleClick })
-                    )
+                    _react2.default.createElement(_Button2.default, { type: 'default', tooltip: 'Edit Profile', icon: 'cog', id: 'editProfile', click: this.handleClick })
                 )
             )
         );

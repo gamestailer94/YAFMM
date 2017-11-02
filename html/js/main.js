@@ -65,7 +65,7 @@ window.logger.error = err => {
     window.logger.oldError(err);
 };
 
-let state = new _State2.default();
+let state = window.state = new _State2.default();
 let config = window.config = (0, _mobx.observable)(new _Config2.default());
 
 config.loadProfiles().then(() => {
