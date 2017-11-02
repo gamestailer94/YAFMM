@@ -14,10 +14,10 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Loader = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class Loader extends _react2.default.Component {
+let Loader = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxReact.observer)(_class = class Loader extends _react2.default.Component {
 
     getLoader() {
-        if (this.props.config.working) {
+        if (this.props.state.working) {
             return _react2.default.createElement('div', { className: 'progress-bar progress-bar-striped progress-bar-animated bg-sucess w-100' });
         }
     }

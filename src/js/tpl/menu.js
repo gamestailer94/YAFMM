@@ -3,7 +3,7 @@ import MainMenu from './MainMenu'
 import BackMenu from './BackMenu'
 import { inject, observer } from 'mobx-react'
 
-@inject(['config']) @observer
+@inject(['state']) @observer
 export default class Menu extends React.Component
 {
     componentDidMount(){
@@ -14,7 +14,7 @@ export default class Menu extends React.Component
     }
 
     getMenu(){
-        if(this.props.config.page === 'main'){
+        if(this.props.state.page === 'main'){
             return <MainMenu />
         }else{
             return <BackMenu />

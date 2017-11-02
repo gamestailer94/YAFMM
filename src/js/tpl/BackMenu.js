@@ -2,10 +2,10 @@ import React from 'react';
 import Button from './Button'
 import {inject, observer} from 'mobx-react'
 
-@inject(['config']) @observer
+@inject(['state']) @observer
 class BackMenu extends React.Component {
     handleClick(){
-        this.props.config.page = 'main';
+        this.props.state.page = 'main';
     }
 
     render(){

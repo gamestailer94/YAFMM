@@ -1,13 +1,13 @@
 import React from 'react'
 import {inject, observer} from 'mobx-react'
 
-@inject('config') @observer
+@inject('state') @observer
 class Button extends React.Component {
 
     constructor(props) {
         super(props);
-        if(typeof(props.config.btn[props.id]) === 'undefined'){
-            props.config.addButton(props.id);
+        if(typeof(props.state.btn[props.id]) === 'undefined'){
+            props.state.addButton(props.id);
         }
     }
 
@@ -17,7 +17,7 @@ class Button extends React.Component {
 
     getIconName() {
         let prefix = "fa fa-lg fa-fw fa-";
-        if(this.props.config.btn[this.props.id].working){
+        if(this.props.state.btn[this.props.id].working){
             return prefix+"circle-o-notch fa-spin"
         }else {
             return prefix + this.props.icon

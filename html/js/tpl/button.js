@@ -14,12 +14,12 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Button = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class Button extends _react2.default.Component {
+let Button = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxReact.observer)(_class = class Button extends _react2.default.Component {
 
     constructor(props) {
         super(props);
-        if (typeof props.config.btn[props.id] === 'undefined') {
-            props.config.addButton(props.id);
+        if (typeof props.state.btn[props.id] === 'undefined') {
+            props.state.addButton(props.id);
         }
     }
 
@@ -29,7 +29,7 @@ let Button = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxRe
 
     getIconName() {
         let prefix = "fa fa-lg fa-fw fa-";
-        if (this.props.config.btn[this.props.id].working) {
+        if (this.props.state.btn[this.props.id].working) {
             return prefix + "circle-o-notch fa-spin";
         } else {
             return prefix + this.props.icon;

@@ -1,11 +1,11 @@
 import React from 'react'
 import {inject, observer} from 'mobx-react'
 
-@inject('config') @observer
+@inject('state') @observer
 class Loader extends React.Component {
 
     getLoader(){
-        if(this.props.config.working){
+        if(this.props.state.working){
             return <div className="progress-bar progress-bar-striped progress-bar-animated bg-sucess w-100" />
         }
     }

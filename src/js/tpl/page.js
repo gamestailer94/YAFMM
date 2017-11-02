@@ -6,11 +6,11 @@ import ProfileConfig from './ProfileConfig'
 import Loader from './Loader'
 
 
-@inject(['config']) @observer
+@inject(['state']) @observer
 class Page extends React.Component {
     render() {
         let content;
-       switch(this.props.config.page){
+       switch(this.props.state.page){
            case 'editProfile':
                content = <ProfileConfig/>
                break;

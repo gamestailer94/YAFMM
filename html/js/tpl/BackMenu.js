@@ -18,9 +18,9 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let BackMenu = (_dec = (0, _mobxReact.inject)(['config']), _dec(_class = (0, _mobxReact.observer)(_class = class BackMenu extends _react2.default.Component {
+let BackMenu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class BackMenu extends _react2.default.Component {
     handleClick() {
-        this.props.config.page = 'main';
+        this.props.state.page = 'main';
     }
 
     render() {
