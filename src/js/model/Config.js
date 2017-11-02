@@ -37,9 +37,9 @@ class Config {
 
     @action loadProfiles() {
         return new Promise((resolve,reject) => {
-            window.storage.isPathExists('profiles.json', (exists) => {
+            window.storage.isPathExists('config.json', (exists) => {
                 if(exists) {
-                    window.storage.get('profiles', (err,data) =>{
+                    window.storage.get('config', (err,data) =>{
                         if(err){
                             window.logger.error(err);
                             reject();
