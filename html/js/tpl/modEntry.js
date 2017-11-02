@@ -50,4 +50,4 @@ let ModEntry = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobx
     }
 }) || _class) || _class);
 exports.default = ModEntry;
-//# sourceMappingURL=modEntry.js.map
+//# sourceMappingURL=ModEntry.js.map

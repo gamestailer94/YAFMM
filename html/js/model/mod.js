@@ -124,4 +124,4 @@ let Mod = (_class = class Mod {
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'loadDetails', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadDetails'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
 exports.default = Mod;
-//# sourceMappingURL=mod.js.map
+//# sourceMappingURL=Mod.js.map

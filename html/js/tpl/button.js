@@ -50,4 +50,4 @@ let Button = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxRea
     }
 }) || _class) || _class);
 exports.default = Button;
-//# sourceMappingURL=button.js.map
+//# sourceMappingURL=Button.js.map
