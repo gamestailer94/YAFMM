@@ -4,13 +4,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dec, _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _mobxReact = require('mobx-react');
 
 var _ProfileList = require('./ProfileList');
 
@@ -20,13 +16,13 @@ var _AddProfile = require('./AddProfile');
 
 var _AddProfile2 = _interopRequireDefault(_AddProfile);
 
+var _ProfileEditPanel = require('./ProfileEditPanel');
+
+var _ProfileEditPanel2 = _interopRequireDefault(_ProfileEditPanel);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ProfileConfig = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileConfig extends _react2.default.Component {
-    changeProfileName(e) {
-        this.props.profiles.activeProfile.name = e.target.value;
-    }
-
+let ProfileConfig = class ProfileConfig extends _react2.default.Component {
     render() {
         return _react2.default.createElement(
             'div',
@@ -40,23 +36,10 @@ let ProfileConfig = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0
             _react2.default.createElement(
                 'div',
                 { className: 'col-6' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'alert alert-secondary' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            'Profile Name:'
-                        ),
-                        _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.props.profiles.activeProfile.name, onChange: this.changeProfileName.bind(this) })
-                    )
-                )
+                _react2.default.createElement(_ProfileEditPanel2.default, null)
             )
         );
     }
-}) || _class) || _class);
+};
 exports.default = ProfileConfig;
 //# sourceMappingURL=ProfileConfig.js.map

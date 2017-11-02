@@ -60,4 +60,4 @@ let Page = (_dec = (0, _mobxReact.inject)(['config']), _dec(_class = (0, _mobxRe
     }
 }) || _class) || _class);
 exports.default = Page;
-//# sourceMappingURL=Page.js.map
+//# sourceMappingURL=page.js.map

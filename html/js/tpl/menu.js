@@ -52,4 +52,4 @@ let Menu = (_dec = (0, _mobxReact.inject)(['config']), _dec(_class = (0, _mobxRe
     }
 }) || _class) || _class);
 exports.default = Menu;
-//# sourceMappingURL=Menu.js.map
+//# sourceMappingURL=menu.js.map
