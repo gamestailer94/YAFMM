@@ -4,13 +4,17 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
 
 var _mobx = require('mobx');
 
-var _profile = require('./profile');
+var _Profile = require('./Profile');
 
-var _profile2 = _interopRequireDefault(_profile);
+var _Profile2 = _interopRequireDefault(_Profile);
+
+var _GameVersion = require('./GameVersion');
+
+var _GameVersion2 = _interopRequireDefault(_GameVersion);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -62,6 +66,8 @@ let Config = (_class = class Config {
         _initDefineProp(this, 'profiles', _descriptor, this);
 
         _initDefineProp(this, 'lastProfileId', _descriptor2, this);
+
+        _initDefineProp(this, 'gameVersions', _descriptor3, this);
     }
 
     get activeProfile() {
@@ -102,11 +108,16 @@ let Config = (_class = class Config {
                         }
                         this.profiles = [];
                         data.profiles.map(profile => {
-                            let profileObject = new _profile2.default();
+                            let profileObject = new _Profile2.default();
                             profileObject.hydrate(profile);
                             this.profiles.push(profileObject);
                         });
                         this.lastProfileId = data.lastProfileId;
+                        data.gameVersion.map(gameVersion => {
+                            let gameVersionObject = new _GameVersion2.default();
+                            gameVersionObject.hydrate(gameVersion);
+                            this.gameVersions.push(gameVersionObject);
+                        });
                         resolve();
                     });
                 } else {
@@ -137,12 +148,17 @@ let Config = (_class = class Config {
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'profiles', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
-        return [new _profile2.default()];
+        return [new _Profile2.default()];
     }
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'lastProfileId', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return 0;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'gameVersions', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return [new _GameVersion2.default()];
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype)), _class);
 exports.default = Config;

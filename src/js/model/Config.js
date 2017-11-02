@@ -1,11 +1,13 @@
 'use strict';
 import { action, observable, autorun, computed } from 'mobx'
-import Profile from './profile'
+import Profile from './Profile'
+import GameVersion from './GameVersion'
 
 
 class Config {
     @observable profiles = [new Profile()];
     @observable lastProfileId = 0;
+    @observable gameVersions = [new GameVersion()];
 
     @computed get activeProfile(){
         let activeProfile = null;
@@ -51,6 +53,11 @@ class Config {
                             this.profiles.push(profileObject);
                         });
                         this.lastProfileId = data.lastProfileId;
+                        data.gameVersion.map(gameVersion => {
+                            let gameVersionObject = new GameVersion();
+                            gameVersionObject.hydrate(gameVersion);
+                            this.gameVersions.push(gameVersionObject);
+                        });
                         resolve();
                     })
                 }else {
