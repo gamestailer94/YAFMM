@@ -18,7 +18,7 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ModList = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mobxReact.observer)(_class = class ModList extends _react2.default.Component {
+let ModList = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ModList extends _react2.default.Component {
 
     render() {
         return _react2.default.createElement(
@@ -30,7 +30,7 @@ let ModList = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mob
                 _react2.default.createElement(
                     'ul',
                     { className: 'list-group' },
-                    this.props.profiles.activeProfile.mods.map(mod => {
+                    this.props.config.activeProfile.mods.map(mod => {
                         return _react2.default.createElement(_ModEntry2.default, { key: mod.id, mod: mod });
                     })
                 )

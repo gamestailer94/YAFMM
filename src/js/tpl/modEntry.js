@@ -1,7 +1,7 @@
 import React from 'react'
 import {observer, inject} from 'mobx-react'
 
-@inject('profiles') @observer
+@inject('config') @observer
 class ModEntry extends React.Component {
 
     constructor(props){
@@ -22,7 +22,7 @@ class ModEntry extends React.Component {
 
     remove() {
         let id = this.props.mod.id;
-        this.props.profiles.activeProfile.removeMod(id);
+        this.props.config.activeProfile.removeMod(id);
     }
 
     render(){

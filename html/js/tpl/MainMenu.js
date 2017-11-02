@@ -22,7 +22,7 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let MainMenu = (_dec = (0, _mobxReact.inject)('profiles'), _dec2 = (0, _mobxReact.inject)('config'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class MainMenu extends _react2.default.Component {
+let MainMenu = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class MainMenu extends _react2.default.Component {
 
     constructor(props) {
         super(props);
@@ -34,13 +34,13 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('profiles'), _dec2 = (0, _mobxReac
             case 'add':
                 let mod = new _Mod2.default();
                 mod.loadDetails('test');
-                this.props.profiles.activeProfile.addMod(mod);
+                this.props.config.activeProfile.addMod(mod);
                 break;
             case 'editProfile':
-                this.props.config.page = 'editProfile';
+                this.props.state.page = 'editProfile';
                 break;
             case 'config':
-                this.props.config.page = 'config';
+                this.props.state.page = 'config';
                 break;
             default:
                 break;
@@ -48,7 +48,7 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('profiles'), _dec2 = (0, _mobxReac
     }
 
     changeProfile(e) {
-        this.props.profiles.lastProfileId = parseInt(e.target.value);
+        this.props.config.lastProfileId = parseInt(e.target.value);
     }
 
     render() {
@@ -87,7 +87,7 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('profiles'), _dec2 = (0, _mobxReac
                         'button',
                         { className: 'btn btn-default', disabled: true },
                         'Game Version: ',
-                        this.props.profiles.activeProfile.gameVersion
+                        this.props.config.activeProfile.gameVersion
                     )
                 )
             ),
@@ -99,8 +99,8 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('profiles'), _dec2 = (0, _mobxReac
                     { className: 'mr-1 input-group' },
                     _react2.default.createElement(
                         'select',
-                        { className: 'form-control', value: this.props.profiles.lastProfileId, onChange: this.changeProfile.bind(this) },
-                        this.props.profiles.profiles.map(profile => {
+                        { className: 'form-control', value: this.props.config.lastProfileId, onChange: this.changeProfile.bind(this) },
+                        this.props.config.profiles.map(profile => {
                             return _react2.default.createElement(
                                 'option',
                                 { key: profile.id, value: profile.id },

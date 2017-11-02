@@ -24,13 +24,13 @@ var _Page = require('./js/tpl/Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
-var _Profiles = require('./js/model/Profiles');
-
-var _Profiles2 = _interopRequireDefault(_Profiles);
-
 var _Config = require('./js/model/Config');
 
 var _Config2 = _interopRequireDefault(_Config);
+
+var _State = require('./js/model/State');
+
+var _State2 = _interopRequireDefault(_State);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65,17 +65,17 @@ window.logger.error = err => {
     window.logger.oldError(err);
 };
 
-let config = new _Config2.default();
-let profiles = window.profiles = (0, _mobx.observable)(new _Profiles2.default());
+let state = new _State2.default();
+let config = window.config = (0, _mobx.observable)(new _Config2.default());
 
-profiles.loadProfiles().then(() => {
+config.loadProfiles().then(() => {
     (0, _mobx.autorunAsync)(() => {
-        window.storage.set('profiles', profiles).catch(window.logger.error);
+        window.storage.set('config', config).catch(window.logger.error);
     }, 500);
 }).then(() => {
     _reactDom2.default.render(_react2.default.createElement(
         _mobxReact.Provider,
-        { profiles: profiles, config: config },
+        { config: config, state: state },
         _react2.default.createElement(_Page2.default, null)
     ), document.getElementById('root'));
 });

@@ -38,21 +38,21 @@ window.logger.error = (err) => {
 };
 
 import Page from './js/tpl/Page'
-import Profiles from './js/model/Profiles'
 import Config from './js/model/Config'
+import State from './js/model/State'
 
-let config = new Config();
-let profiles = window.profiles = observable( new Profiles());
+let state = new State();
+let config = window.config = observable( new Config());
 
-profiles.loadProfiles()
+config.loadProfiles()
     .then(()=>{
         autorunAsync(() => {
-            window.storage.set('profiles', profiles).catch(window.logger.error);
+            window.storage.set('config', config).catch(window.logger.error);
         },500);
     })
     .then(() => {
     ReactDOM.render(
-        <Provider profiles={profiles} config={config}>
+        <Provider config={config} state={state}>
             <Page/>
         </Provider>
         , document.getElementById('root'));

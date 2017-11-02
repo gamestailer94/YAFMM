@@ -18,13 +18,13 @@ var _Profile2 = _interopRequireDefault(_Profile);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let AddProfile = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = class AddProfile extends _react2.default.Component {
+let AddProfile = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class AddProfile extends _react2.default.Component {
     addProfile() {
-        let nextProfileId = this.props.profiles.nextProfileId;
+        let nextProfileId = this.props.config.nextProfileId;
         let profile = new _Profile2.default();
         profile.id = nextProfileId;
         profile.name = 'new Profile';
-        this.props.profiles.addProfile(profile);
+        this.props.config.addProfile(profile);
     }
 
     render() {

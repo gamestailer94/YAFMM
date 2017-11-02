@@ -14,22 +14,22 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ProfileList = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileList extends _react2.default.Component {
+let ProfileList = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileList extends _react2.default.Component {
     handleClick(id, e) {
         let target = $(e.target);
         if (target.data('remove')) {
             this.removeProfile(id);
         } else {
-            this.props.profiles.lastProfileId = id;
+            this.props.config.lastProfileId = id;
         }
     }
 
     removeProfile(id) {
-        this.props.profiles.removeProfile(id);
+        this.props.config.removeProfile(id);
     }
 
     getTrash(id) {
-        if (this.props.profiles.lastProfileId !== id) {
+        if (this.props.config.lastProfileId !== id) {
             return _react2.default.createElement(
                 'div',
                 { className: 'float-right' },
@@ -42,9 +42,9 @@ let ProfileList = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, 
         return _react2.default.createElement(
             'ul',
             { className: 'list-group' },
-            this.props.profiles.profiles.map(profile => {
+            this.props.config.profiles.map(profile => {
                 let className = 'list-group-item list.group-item-action';
-                className += this.props.profiles.lastProfileId === profile.id ? ' list-group-item-secondary' : '';
+                className += this.props.config.lastProfileId === profile.id ? ' list-group-item-secondary' : '';
                 return _react2.default.createElement(
                     'li',
                     { key: profile.id, className: className, onClick: this.handleClick.bind(this, profile.id) },

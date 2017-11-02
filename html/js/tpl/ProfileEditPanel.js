@@ -14,9 +14,9 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileEditPanel extends _react2.default.Component {
+let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileEditPanel extends _react2.default.Component {
     changeProfileName(e) {
-        this.props.profiles.activeProfile.name = e.target.value;
+        this.props.config.activeProfile.name = e.target.value;
     }
 
     render() {
@@ -34,7 +34,7 @@ let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('profiles'), _dec(_class =
                         { className: 'mr-1' },
                         'Profile Name:'
                     ),
-                    _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.props.profiles.activeProfile.name,
+                    _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.props.config.activeProfile.name,
                         onChange: this.changeProfileName.bind(this) })
                 )
             ),

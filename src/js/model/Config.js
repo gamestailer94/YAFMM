@@ -1,40 +1,83 @@
-import {observable, action, computed, extendObservable} from 'mobx'
+'use strict';
+import { action, observable, autorun, computed } from 'mobx'
+import Profile from './profile'
+
 
 class Config {
-    @observable page = 'main';
-    @observable queue = [];
-    @observable btn = {};
-    @observable working = false;
+    @observable profiles = [new Profile()];
+    @observable lastProfileId = 0;
 
-    @action addToQueue(todo) {
-        this.queue.push(todo);
-    }
-
-    @computed get nextInQueue(){
-        return this.queue.length > 0 ?this.queue[0]:undefined;
-    }
-
-    @action acceptTask(){
-        let todo = this.queue[0];
-        this.queue = this.queue.slice(1,this.queue.length);
-        return todo;
-    }
-
-    @action addButton(id){
-        this.btn = extendObservable(this.btn,{
-            [id]:{
-                working: false
+    @computed get activeProfile(){
+        let activeProfile = null;
+        this.profiles.map(profile => {
+            if(profile.id === this.lastProfileId){
+                activeProfile = profile
             }
+        });
+        if(activeProfile === null)
+        {
+            activeProfile = this.profiles[0];
+        }
+        return activeProfile;
+    }
+
+    @computed get nextProfileId(){
+        let nextId = 0;
+        this.profiles.map(profile => {
+            if(profile.id >= nextId){
+                nextId = profile.id+1
+            }
+        });
+        return nextId;
+    }
+
+    @action addProfile(profile){
+        this.profiles.push(profile);
+    }
+
+    @action loadProfiles() {
+        return new Promise((resolve,reject) => {
+            window.storage.isPathExists('profiles.json', (exists) => {
+                if(exists) {
+                    window.storage.get('profiles', (err,data) =>{
+                        if(err){
+                            window.logger.error(err);
+                            reject();
+                        }
+                        this.profiles = [];
+                        data.profiles.map(profile => {
+                            let profileObject = new Profile();
+                            profileObject.hydrate(profile);
+                            this.profiles.push(profileObject);
+                        });
+                        this.lastProfileId = data.lastProfileId;
+                        resolve();
+                    })
+                }else {
+                    resolve();
+                }
+            });
         })
     }
 
-    @action setBtnWorking(id){
-        this.btn[id].working = true;
+    @action removeProfile(id){
+        let indexToRemove = 0;
+        this.profiles.map((profile, index) => {
+            if(profile.id === id){
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [], afterSlice = [];
+        if(indexToRemove > 0){
+            beforeSlice = this.profiles.slice(0,indexToRemove);
+        }
+        if(indexToRemove < this.profiles.length){
+            afterSlice = this.profiles.slice(indexToRemove+1,this.profiles.length);
+        }
+        this.profiles = beforeSlice.concat(afterSlice);
     }
 
-    @action setBtnNotWorking(id){
-        this.btn[id].working = false;
-    }
 }
+
 
 export default Config

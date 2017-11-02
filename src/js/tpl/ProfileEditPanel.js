@@ -1,10 +1,10 @@
 import React from 'react'
 import { inject, observer} from 'mobx-react'
 
-@inject('profiles') @observer
+@inject('config') @observer
 class ProfileEditPanel extends React.Component {
     changeProfileName(e){
-        this.props.profiles.activeProfile.name = e.target.value;
+        this.props.config.activeProfile.name = e.target.value;
     }
 
 
@@ -13,7 +13,7 @@ class ProfileEditPanel extends React.Component {
             <div className="mt-1">
                 <div className="form-inline">
                     <label className="mr-1">Profile Name:</label>
-                    <input type="text" className="form-control" value={this.props.profiles.activeProfile.name}
+                    <input type="text" className="form-control" value={this.props.config.activeProfile.name}
                            onChange={this.changeProfileName.bind(this)}/>
                 </div>
             </div>

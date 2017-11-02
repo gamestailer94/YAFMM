@@ -3,7 +3,7 @@ import Button from './Button.js'
 import Mod from '../model/Mod'
 import { inject, observer } from 'mobx-react'
 
-@inject('profiles') @inject('config') @observer
+@inject('config') @inject('state') @observer
 class MainMenu extends React.Component {
 
     constructor(props){
@@ -16,13 +16,13 @@ class MainMenu extends React.Component {
             case 'add':
                 let mod = new Mod();
                 mod.loadDetails('test');
-                this.props.profiles.activeProfile.addMod(mod);
+                this.props.config.activeProfile.addMod(mod);
                 break;
             case 'editProfile':
-                this.props.config.page = 'editProfile';
+                this.props.state.page = 'editProfile';
                 break;
             case 'config':
-                this.props.config.page = 'config';
+                this.props.state.page = 'config';
                 break;
             default:
                 break;
@@ -30,7 +30,7 @@ class MainMenu extends React.Component {
     }
 
     changeProfile(e){
-        this.props.profiles.lastProfileId = parseInt(e.target.value);
+        this.props.config.lastProfileId = parseInt(e.target.value);
     }
 
     render(){
@@ -51,13 +51,13 @@ class MainMenu extends React.Component {
             </div>
             <div className="col-3">
                 <div className="mr-1">
-                    <button className="btn btn-default" disabled>Game Version: {this.props.profiles.activeProfile.gameVersion}</button>
+                    <button className="btn btn-default" disabled>Game Version: {this.props.config.activeProfile.gameVersion}</button>
                 </div>
             </div>
             <div className="col-4">
                 <div className="mr-1 input-group">
-                    <select className="form-control" value={this.props.profiles.lastProfileId} onChange={this.changeProfile.bind(this)}>
-                        {this.props.profiles.profiles.map(profile => {
+                    <select className="form-control" value={this.props.config.lastProfileId} onChange={this.changeProfile.bind(this)}>
+                        {this.props.config.profiles.map(profile => {
                             return <option key={profile.id} value={profile.id}>{profile.name}</option>
                         })}
                     </select>

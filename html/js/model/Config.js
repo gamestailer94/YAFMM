@@ -4,9 +4,15 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4;
+var _desc, _value, _class, _descriptor, _descriptor2;
 
 var _mobx = require('mobx');
+
+var _profile = require('./profile');
+
+var _profile2 = _interopRequireDefault(_profile);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _initDefineProp(target, property, descriptor, context) {
     if (!descriptor) return;
@@ -53,64 +59,91 @@ function _initializerWarningHelper(descriptor, context) {
 
 let Config = (_class = class Config {
     constructor() {
-        _initDefineProp(this, 'page', _descriptor, this);
+        _initDefineProp(this, 'profiles', _descriptor, this);
 
-        _initDefineProp(this, 'queue', _descriptor2, this);
-
-        _initDefineProp(this, 'btn', _descriptor3, this);
-
-        _initDefineProp(this, 'working', _descriptor4, this);
+        _initDefineProp(this, 'lastProfileId', _descriptor2, this);
     }
 
-    addToQueue(todo) {
-        this.queue.push(todo);
-    }
-
-    get nextInQueue() {
-        return this.queue.length > 0 ? this.queue[0] : undefined;
-    }
-
-    acceptTask() {
-        let todo = this.queue[0];
-        this.queue = this.queue.slice(1, this.queue.length);
-        return todo;
-    }
-
-    addButton(id) {
-        this.btn = (0, _mobx.extendObservable)(this.btn, {
-            [id]: {
-                working: false
+    get activeProfile() {
+        let activeProfile = null;
+        this.profiles.map(profile => {
+            if (profile.id === this.lastProfileId) {
+                activeProfile = profile;
             }
+        });
+        if (activeProfile === null) {
+            activeProfile = this.profiles[0];
+        }
+        return activeProfile;
+    }
+
+    get nextProfileId() {
+        let nextId = 0;
+        this.profiles.map(profile => {
+            if (profile.id >= nextId) {
+                nextId = profile.id + 1;
+            }
+        });
+        return nextId;
+    }
+
+    addProfile(profile) {
+        this.profiles.push(profile);
+    }
+
+    loadProfiles() {
+        return new Promise((resolve, reject) => {
+            window.storage.isPathExists('profiles.json', exists => {
+                if (exists) {
+                    window.storage.get('profiles', (err, data) => {
+                        if (err) {
+                            window.logger.error(err);
+                            reject();
+                        }
+                        this.profiles = [];
+                        data.profiles.map(profile => {
+                            let profileObject = new _profile2.default();
+                            profileObject.hydrate(profile);
+                            this.profiles.push(profileObject);
+                        });
+                        this.lastProfileId = data.lastProfileId;
+                        resolve();
+                    });
+                } else {
+                    resolve();
+                }
+            });
         });
     }
 
-    setBtnWorking(id) {
-        this.btn[id].working = true;
+    removeProfile(id) {
+        let indexToRemove = 0;
+        this.profiles.map((profile, index) => {
+            if (profile.id === id) {
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [],
+            afterSlice = [];
+        if (indexToRemove > 0) {
+            beforeSlice = this.profiles.slice(0, indexToRemove);
+        }
+        if (indexToRemove < this.profiles.length) {
+            afterSlice = this.profiles.slice(indexToRemove + 1, this.profiles.length);
+        }
+        this.profiles = beforeSlice.concat(afterSlice);
     }
 
-    setBtnNotWorking(id) {
-        this.btn[id].working = false;
-    }
-}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'page', [_mobx.observable], {
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'profiles', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
-        return 'main';
+        return [new _profile2.default()];
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'queue', [_mobx.observable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'lastProfileId', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
-        return [];
+        return 0;
     }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'btn', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return {};
-    }
-}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'working', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return false;
-    }
-}), _applyDecoratedDescriptor(_class.prototype, 'addToQueue', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addToQueue'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextInQueue', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextInQueue'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'acceptTask', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'acceptTask'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addButton', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addButton'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setBtnWorking', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setBtnWorking'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setBtnNotWorking', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setBtnNotWorking'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype)), _class);
 exports.default = Config;
 //# sourceMappingURL=Config.js.map
