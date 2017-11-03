@@ -53,7 +53,8 @@ class Config {
                             this.profiles.push(profileObject);
                         });
                         this.lastProfileId = data.lastProfileId;
-                        data.gameVersion.map(gameVersion => {
+                        this.gameVersions = [];
+                        data.gameVersions.map(gameVersion => {
                             let gameVersionObject = new GameVersion();
                             gameVersionObject.hydrate(gameVersion);
                             this.gameVersions.push(gameVersionObject);
@@ -82,6 +83,27 @@ class Config {
             afterSlice = this.profiles.slice(indexToRemove+1,this.profiles.length);
         }
         this.profiles = beforeSlice.concat(afterSlice);
+    }
+
+    @action addGameVersion(gameVersion){
+        this.gameVersions.push(gameVersion);
+    }
+
+    @action removeGameVersion(version){
+        let indexToRemove = 0;
+        this.gameVersions.map((gameVersion, index) => {
+            if(gameVersion.version === version){
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [], afterSlice = [];
+        if(indexToRemove > 0){
+            beforeSlice = this.gameVersions.slice(0,indexToRemove);
+        }
+        if(indexToRemove < this.gameVersions.length){
+            afterSlice = this.gameVersions.slice(indexToRemove+1,this.profiles.length);
+        }
+        this.gameVersions = beforeSlice.concat(afterSlice);
     }
 
 }

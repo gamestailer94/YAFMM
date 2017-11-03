@@ -2,12 +2,12 @@ import {inject, observable, action} from 'mobx'
 
 class GameVersion {
     @observable version = '0.0.0';
-    @observable fileName = '';
+    @observable path = '';
     @observable downloaded = false;
 
     @action hydrate(data){
         this.version=data.version;
-        this.fileName=data.fileName;
+        this.path=data.path;
         this.downloaded=data.downloaded;
     }
 }

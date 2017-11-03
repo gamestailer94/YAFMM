@@ -29,6 +29,10 @@ class MainMenu extends React.Component {
         }
     }
 
+    changeGameVersion(){
+        this.props.state.page = 'editProfile';
+    }
+
     changeProfile(e){
         this.props.config.lastProfileId = parseInt($(e.target).data('id'));
     }
@@ -51,7 +55,7 @@ class MainMenu extends React.Component {
             </div>
             <div className="col-3">
                 <div className="mr-1">
-                    <button className="btn btn-default" disabled>Game Version: {this.props.config.activeProfile.gameVersion}</button>
+                    <button className="btn btn-default" onClick={this.changeGameVersion.bind(this)}>Game Version: {this.props.config.activeProfile.gameVersion}</button>
                 </div>
             </div>
             <div className="col-4">

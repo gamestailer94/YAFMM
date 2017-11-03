@@ -55,14 +55,14 @@ let GameVersion = (_class = class GameVersion {
     constructor() {
         _initDefineProp(this, 'version', _descriptor, this);
 
-        _initDefineProp(this, 'fileName', _descriptor2, this);
+        _initDefineProp(this, 'path', _descriptor2, this);
 
         _initDefineProp(this, 'downloaded', _descriptor3, this);
     }
 
     hydrate(data) {
         this.version = data.version;
-        this.fileName = data.fileName;
+        this.path = data.path;
         this.downloaded = data.downloaded;
     }
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'version', [_mobx.observable], {
@@ -70,7 +70,7 @@ let GameVersion = (_class = class GameVersion {
     initializer: function () {
         return '0.0.0';
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'fileName', [_mobx.observable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'path', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';

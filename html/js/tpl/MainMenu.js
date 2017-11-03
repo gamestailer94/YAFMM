@@ -47,6 +47,10 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.
         }
     }
 
+    changeGameVersion() {
+        this.props.state.page = 'editProfile';
+    }
+
     changeProfile(e) {
         this.props.config.lastProfileId = parseInt($(e.target).data('id'));
     }
@@ -85,7 +89,7 @@ let MainMenu = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.
                     { className: 'mr-1' },
                     _react2.default.createElement(
                         'button',
-                        { className: 'btn btn-default', disabled: true },
+                        { className: 'btn btn-default', onClick: this.changeGameVersion.bind(this) },
                         'Game Version: ',
                         this.props.config.activeProfile.gameVersion
                     )

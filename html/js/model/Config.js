@@ -113,7 +113,8 @@ let Config = (_class = class Config {
                             this.profiles.push(profileObject);
                         });
                         this.lastProfileId = data.lastProfileId;
-                        data.gameVersion.map(gameVersion => {
+                        this.gameVersions = [];
+                        data.gameVersions.map(gameVersion => {
                             let gameVersionObject = new _GameVersion2.default();
                             gameVersionObject.hydrate(gameVersion);
                             this.gameVersions.push(gameVersionObject);
@@ -145,6 +146,28 @@ let Config = (_class = class Config {
         this.profiles = beforeSlice.concat(afterSlice);
     }
 
+    addGameVersion(gameVersion) {
+        this.gameVersions.push(gameVersion);
+    }
+
+    removeGameVersion(version) {
+        let indexToRemove = 0;
+        this.gameVersions.map((gameVersion, index) => {
+            if (gameVersion.version === version) {
+                indexToRemove = index;
+            }
+        });
+        let beforeSlice = [],
+            afterSlice = [];
+        if (indexToRemove > 0) {
+            beforeSlice = this.gameVersions.slice(0, indexToRemove);
+        }
+        if (indexToRemove < this.gameVersions.length) {
+            afterSlice = this.gameVersions.slice(indexToRemove + 1, this.profiles.length);
+        }
+        this.gameVersions = beforeSlice.concat(afterSlice);
+    }
+
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'profiles', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
@@ -160,6 +183,6 @@ let Config = (_class = class Config {
     initializer: function () {
         return [new _GameVersion2.default()];
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeGameVersion'), _class.prototype)), _class);
 exports.default = Config;
 //# sourceMappingURL=Config.js.map
