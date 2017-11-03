@@ -106,6 +106,18 @@ class Config {
         this.gameVersions = beforeSlice.concat(afterSlice);
     }
 
+    @action importModFromProfile(id){
+        let mods = [];
+
+        this.profiles.map(profile => {
+            if(profile.id === id){
+                mods = profile.mods;
+            }
+        });
+
+        this.activeProfile.importMods(mods);
+    }
+
 }
 
 

@@ -16,9 +16,21 @@ var _GameVersion = require('../model/GameVersion');
 
 var _GameVersion2 = _interopRequireDefault(_GameVersion);
 
+var _ImportFromProfile = require('./ImportFromProfile');
+
+var _ImportFromProfile2 = _interopRequireDefault(_ImportFromProfile);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileEditPanel extends _react2.default.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.changeProfileName = this.changeProfileName.bind(this);
+        this.changeGameVersion = this.changeGameVersion.bind(this);
+        this.updateGameVersions = this.updateGameVersions.bind(this);
+    }
     changeProfileName(e) {
         this.props.config.activeProfile.name = e.target.value;
     }
@@ -49,7 +61,7 @@ let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (
                         'Profile Name:'
                     ),
                     _react2.default.createElement('input', { type: 'text', className: 'form-control', value: this.props.config.activeProfile.name,
-                        onChange: this.changeProfileName.bind(this) })
+                        onChange: this.changeProfileName })
                 )
             ),
             _react2.default.createElement(
@@ -80,7 +92,7 @@ let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (
                                 return _react2.default.createElement(
                                     'button',
                                     { key: gameVersion.version, 'data-version': gameVersion.version,
-                                        className: className, onClick: this.changeGameVersion.bind(this) },
+                                        className: className, onClick: this.changeGameVersion },
                                     gameVersion.version
                                 );
                             })
@@ -88,11 +100,12 @@ let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (
                     ),
                     _react2.default.createElement(
                         'button',
-                        { className: 'btn btn-success', onClick: this.updateGameVersions.bind(this) },
+                        { className: 'btn btn-success', onClick: this.updateGameVersions },
                         _react2.default.createElement('i', { className: 'fa fa-lg fa-fw fa-refresh' })
                     )
                 )
-            )
+            ),
+            _react2.default.createElement(_ImportFromProfile2.default, null)
         );
     }
 }) || _class) || _class);

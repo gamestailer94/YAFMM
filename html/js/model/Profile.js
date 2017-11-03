@@ -104,6 +104,15 @@ let Profile = (_class = class Profile {
         });
     }
 
+    importMods(mods) {
+        this.mods = [];
+        mods.map(mod => {
+            let modObject = new _Mod2.default();
+            modObject.hydrate(mod);
+            this.mods.push(modObject);
+        });
+    }
+
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'mods', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
@@ -124,6 +133,6 @@ let Profile = (_class = class Profile {
     initializer: function () {
         return "0.0.0";
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'lastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'lastModId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hasMods', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'hasMods'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'addMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'lastModId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'lastModId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hasMods', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'hasMods'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeMod', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeMod'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'hydrate', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'hydrate'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'importMods', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'importMods'), _class.prototype)), _class);
 exports.default = Profile;
 //# sourceMappingURL=Profile.js.map

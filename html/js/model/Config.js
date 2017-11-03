@@ -168,6 +168,18 @@ let Config = (_class = class Config {
         this.gameVersions = beforeSlice.concat(afterSlice);
     }
 
+    importModFromProfile(id) {
+        let mods = [];
+
+        this.profiles.map(profile => {
+            if (profile.id === id) {
+                mods = profile.mods;
+            }
+        });
+
+        this.activeProfile.importMods(mods);
+    }
+
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'profiles', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
@@ -183,6 +195,6 @@ let Config = (_class = class Config {
     initializer: function () {
         return [new _GameVersion2.default()];
     }
-}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeGameVersion'), _class.prototype)), _class);
+}), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'importModFromProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'importModFromProfile'), _class.prototype)), _class);
 exports.default = Config;
 //# sourceMappingURL=Config.js.map

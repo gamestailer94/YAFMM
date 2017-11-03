@@ -45,6 +45,15 @@ class Profile {
         })
     }
 
+    @action importMods(mods){
+        this.mods = [];
+        mods.map(mod => {
+            let modObject = new Mod();
+            modObject.hydrate(mod);
+            this.mods.push(modObject);
+        })
+    }
+
 }
 
 export default Profile
