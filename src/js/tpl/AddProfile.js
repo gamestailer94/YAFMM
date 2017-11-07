@@ -1,6 +1,7 @@
 import React from 'react';
 import {inject} from 'mobx-react'
 import Profile from '../model/Profile'
+import Fa from "./Fa";
 
 @inject('config')
 class AddProfile extends React.Component {
@@ -14,7 +15,7 @@ class AddProfile extends React.Component {
 
     render(){
         return <button className="btn btn-success btn-block mb-1" onClick={this.addProfile.bind(this)}>
-            <i className="fa fa-plus fa-lg fa-fw"/>
+            <Fa icon='plus'/>
         </button>
     }
 

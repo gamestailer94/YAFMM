@@ -1,5 +1,6 @@
 import React from 'react'
 import {inject, observer} from 'mobx-react'
+import Fa from "./Fa";
 
 @inject('state') @observer
 class Button extends React.Component {
@@ -15,15 +16,6 @@ class Button extends React.Component {
         return "btn btn-"+this.props.type
     }
 
-    getIconName() {
-        let prefix = "fa fa-lg fa-fw fa-";
-        if(this.props.state.btn[this.props.id].working){
-            return prefix+"circle-o-notch fa-spin"
-        }else {
-            return prefix + this.props.icon
-        }
-    }
-
     handleClick(){
         this.props.click(this)
     }
@@ -31,7 +23,7 @@ class Button extends React.Component {
     render() {
         return <button className={this.getClassName()} onClick={this.handleClick.bind(this)}
                        data-toggle="tooltip" data-placement="bottom" title={this.props.tooltip}>
-            <i className={this.getIconName()} />
+            <Fa icon={this.props.icon} spin={this.props.state.btn[this.props.id].working}/>
         </button>
     }
 }

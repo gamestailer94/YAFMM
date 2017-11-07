@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _Fa = require('./Fa');
+
+var _Fa2 = _interopRequireDefault(_Fa);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let ProfileList = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileList extends _react2.default.Component {
@@ -33,7 +37,7 @@ let ProfileList = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _m
             return _react2.default.createElement(
                 'div',
                 { className: 'float-right' },
-                _react2.default.createElement('i', { 'data-remove': true, className: 'fa fa-trash-o fa-fw text-danger' })
+                _react2.default.createElement(_Fa2.default, { icon: 'trash-o', extraClass: 'text-danger', data: { 'data-remove': true } })
             );
         }
     }

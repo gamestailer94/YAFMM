@@ -1,5 +1,6 @@
 import React from 'react'
 import {observer, inject} from 'mobx-react'
+import Fa from "./Fa";
 
 @inject('config') @observer
 class ModEntry extends React.Component {
@@ -8,11 +9,11 @@ class ModEntry extends React.Component {
         super(props);
     }
 
-    getIconClassName(){
+    getIconName(){
         if(this.props.mod.active)
-            return 'fa fa-fw fa-lg fa-check-square';
+            return 'check-square';
         else
-            return 'fa fa-fw fa-lg fa-square-o'
+            return 'square-o'
     }
 
     changeActive() {
@@ -27,9 +28,9 @@ class ModEntry extends React.Component {
 
     render(){
         return <li className="list-group-item">
-            <i onClick={this.changeActive.bind(this)} className={this.getIconClassName()}/>{' '}{this.props.mod.name}
+            <Fa icon={this.getIconName()} click={this.changeActive.bind(this)}/>{' '}{this.props.mod.name}
             <div className="float-right">
-            <i className="fa fa-fw fa-lg fa-trash-o text-danger" onClick={this.remove.bind(this)} />
+                <Fa icon="trash-o" extraClass='text-danger' click={this.remove.bind(this)}/>
             </div>
         </li>
     }

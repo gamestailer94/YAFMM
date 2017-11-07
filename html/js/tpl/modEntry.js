@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _Fa = require('./Fa');
+
+var _Fa2 = _interopRequireDefault(_Fa);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let ModEntry = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ModEntry extends _react2.default.Component {
@@ -20,8 +24,8 @@ let ModEntry = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobx
         super(props);
     }
 
-    getIconClassName() {
-        if (this.props.mod.active) return 'fa fa-fw fa-lg fa-check-square';else return 'fa fa-fw fa-lg fa-square-o';
+    getIconName() {
+        if (this.props.mod.active) return 'check-square';else return 'square-o';
     }
 
     changeActive() {
@@ -38,13 +42,13 @@ let ModEntry = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobx
         return _react2.default.createElement(
             'li',
             { className: 'list-group-item' },
-            _react2.default.createElement('i', { onClick: this.changeActive.bind(this), className: this.getIconClassName() }),
+            _react2.default.createElement(_Fa2.default, { icon: this.getIconName(), click: this.changeActive.bind(this) }),
             ' ',
             this.props.mod.name,
             _react2.default.createElement(
                 'div',
                 { className: 'float-right' },
-                _react2.default.createElement('i', { className: 'fa fa-fw fa-lg fa-trash-o text-danger', onClick: this.remove.bind(this) })
+                _react2.default.createElement(_Fa2.default, { icon: 'trash-o', extraClass: 'text-danger', click: this.remove.bind(this) })
             )
         );
     }

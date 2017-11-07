@@ -16,6 +16,10 @@ var _Profile = require('../model/Profile');
 
 var _Profile2 = _interopRequireDefault(_Profile);
 
+var _Fa = require('./Fa');
+
+var _Fa2 = _interopRequireDefault(_Fa);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let AddProfile = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class AddProfile extends _react2.default.Component {
@@ -31,7 +35,7 @@ let AddProfile = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class A
         return _react2.default.createElement(
             'button',
             { className: 'btn btn-success btn-block mb-1', onClick: this.addProfile.bind(this) },
-            _react2.default.createElement('i', { className: 'fa fa-plus fa-lg fa-fw' })
+            _react2.default.createElement(_Fa2.default, { icon: 'plus' })
         );
     }
 

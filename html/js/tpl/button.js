@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _Fa = require('./Fa');
+
+var _Fa2 = _interopRequireDefault(_Fa);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let Button = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxReact.observer)(_class = class Button extends _react2.default.Component {
@@ -27,15 +31,6 @@ let Button = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxRea
         return "btn btn-" + this.props.type;
     }
 
-    getIconName() {
-        let prefix = "fa fa-lg fa-fw fa-";
-        if (this.props.state.btn[this.props.id].working) {
-            return prefix + "circle-o-notch fa-spin";
-        } else {
-            return prefix + this.props.icon;
-        }
-    }
-
     handleClick() {
         this.props.click(this);
     }
@@ -45,7 +40,7 @@ let Button = (_dec = (0, _mobxReact.inject)('state'), _dec(_class = (0, _mobxRea
             'button',
             { className: this.getClassName(), onClick: this.handleClick.bind(this),
                 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: this.props.tooltip },
-            _react2.default.createElement('i', { className: this.getIconName() })
+            _react2.default.createElement(_Fa2.default, { icon: this.props.icon, spin: this.props.state.btn[this.props.id].working })
         );
     }
 }) || _class) || _class);

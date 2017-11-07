@@ -2,6 +2,7 @@ import React from 'react'
 import { inject, observer} from 'mobx-react'
 import GameVersion from "../model/GameVersion";
 import ImportFromProfile from "./ImportFromProfile";
+import Fa from "./Fa";
 
 @inject('config') @observer
 class ProfileEditPanel extends React.Component {
@@ -50,7 +51,7 @@ class ProfileEditPanel extends React.Component {
                             })}
                         </div>
                     </div>
-                    <button className="btn btn-success" onClick={this.updateGameVersions}><i className="fa fa-lg fa-fw fa-refresh" /></button>
+                    <button className="btn btn-success" onClick={this.updateGameVersions}><Fa icon="refresh" /></button>
                 </div>
             </div>
             <ImportFromProfile/>

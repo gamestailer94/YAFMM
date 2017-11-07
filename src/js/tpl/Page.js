@@ -4,6 +4,7 @@ import ModList from "./ModList"
 import {inject, observer} from "mobx-react";
 import ProfileConfig from './ProfileConfig'
 import Loader from './Loader'
+import ConfigEdit from "./ConfigEdit";
 
 
 @inject(['state']) @observer
@@ -12,7 +13,10 @@ class Page extends React.Component {
         let content;
        switch(this.props.state.page){
            case 'editProfile':
-               content = <ProfileConfig/>
+               content = <ProfileConfig/>;
+               break;
+           case 'config':
+               content = <ConfigEdit/>;
                break;
            case 'main':
            default:

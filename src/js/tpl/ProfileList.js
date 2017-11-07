@@ -1,5 +1,6 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react'
+import Fa from "./Fa";
 
 @inject('config') @observer
 class ProfileList extends React.Component {
@@ -19,7 +20,7 @@ class ProfileList extends React.Component {
     getTrash(id){
         if(this.props.config.lastProfileId !== id) {
             return <div className="float-right">
-                <i data-remove={true} className="fa fa-trash-o fa-fw text-danger"/>
+                <Fa icon="trash-o" extraClass="text-danger" data={{'data-remove':true}}/>
             </div>
         }
     }

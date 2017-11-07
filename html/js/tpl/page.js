@@ -28,6 +28,10 @@ var _Loader = require('./Loader');
 
 var _Loader2 = _interopRequireDefault(_Loader);
 
+var _ConfigEdit = require('./ConfigEdit');
+
+var _ConfigEdit2 = _interopRequireDefault(_ConfigEdit);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class Page extends _react2.default.Component {
@@ -36,6 +40,9 @@ let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxRea
         switch (this.props.state.page) {
             case 'editProfile':
                 content = _react2.default.createElement(_ProfileConfig2.default, null);
+                break;
+            case 'config':
+                content = _react2.default.createElement(_ConfigEdit2.default, null);
                 break;
             case 'main':
             default:

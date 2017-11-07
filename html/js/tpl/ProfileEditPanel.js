@@ -20,6 +20,10 @@ var _ImportFromProfile = require('./ImportFromProfile');
 
 var _ImportFromProfile2 = _interopRequireDefault(_ImportFromProfile);
 
+var _Fa = require('./Fa');
+
+var _Fa2 = _interopRequireDefault(_Fa);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ProfileEditPanel extends _react2.default.Component {
@@ -101,7 +105,7 @@ let ProfileEditPanel = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (
                     _react2.default.createElement(
                         'button',
                         { className: 'btn btn-success', onClick: this.updateGameVersions },
-                        _react2.default.createElement('i', { className: 'fa fa-lg fa-fw fa-refresh' })
+                        _react2.default.createElement(_Fa2.default, { icon: 'refresh' })
                     )
                 )
             ),
