@@ -5,6 +5,7 @@ class State {
     @observable queue = [];
     @observable btn = {};
     @observable working = false;
+    @observable factorioPassPlain = '';
 
     @action addToQueue(todo) {
         this.queue.push(todo);

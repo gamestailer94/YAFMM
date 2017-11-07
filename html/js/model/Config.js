@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
 
 var _mobx = require('mobx');
 
@@ -68,6 +68,10 @@ let Config = (_class = class Config {
         _initDefineProp(this, 'lastProfileId', _descriptor2, this);
 
         _initDefineProp(this, 'gameVersions', _descriptor3, this);
+
+        _initDefineProp(this, 'factorioUsername', _descriptor4, this);
+
+        _initDefineProp(this, 'factorioPassEncrypted', _descriptor5, this);
     }
 
     get activeProfile() {
@@ -194,6 +198,16 @@ let Config = (_class = class Config {
     enumerable: true,
     initializer: function () {
         return [new _GameVersion2.default()];
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'factorioUsername', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassEncrypted', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'importModFromProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'importModFromProfile'), _class.prototype)), _class);
 exports.default = Config;

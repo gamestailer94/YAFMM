@@ -8,6 +8,8 @@ class Config {
     @observable profiles = [new Profile()];
     @observable lastProfileId = 0;
     @observable gameVersions = [new GameVersion()];
+    @observable factorioUsername = '';
+    @observable factorioPassEncrypted = '';
 
     @computed get activeProfile(){
         let activeProfile = null;

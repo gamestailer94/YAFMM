@@ -5,6 +5,7 @@ import {inject, observer} from "mobx-react";
 import ProfileConfig from './ProfileConfig'
 import Loader from './Loader'
 import ConfigEdit from "./ConfigEdit";
+import FactorioLogin from "./FactorioLogin";
 
 
 @inject(['state']) @observer
@@ -17,6 +18,9 @@ class Page extends React.Component {
                break;
            case 'config':
                content = <ConfigEdit/>;
+               break;
+           case 'factorioLogin':
+               content = <FactorioLogin/>;
                break;
            case 'main':
            default:

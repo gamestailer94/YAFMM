@@ -12,7 +12,7 @@ class BackMenu extends React.Component {
         return <div className="row my-1">
             <div className="col-6">
                 <div className="mr-1 btn-group">
-                    <Button type='secondary' tooltip="back" icon="arrow-left" id="back" click={this.handleClick.bind(this)}/>
+                    <Button type='secondary' tooltip="back" icon="arrow-left" id="Back" click={this.handleClick.bind(this)}/>
                 </div>
             </div>
         </div>

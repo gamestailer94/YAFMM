@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dec, _class;
+var _dec, _dec2, _class;
 
 var _react = require('react');
 
@@ -20,7 +20,11 @@ var _Fa2 = _interopRequireDefault(_Fa);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class ConfigEdit extends _react2.default.Component {
+let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class ConfigEdit extends _react2.default.Component {
+    openFactorioLogin() {
+        this.props.state.page = 'factorioLogin';
+    }
+
     render() {
         return _react2.default.createElement(
             'div',
@@ -45,7 +49,7 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mo
                         { className: 'col' },
                         _react2.default.createElement(
                             'button',
-                            { className: 'btn btn-primary' },
+                            { className: 'btn btn-outline-primary' },
                             _react2.default.createElement(_Fa2.default, { icon: 'google' }),
                             'Connect'
                         )
@@ -68,9 +72,37 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mo
                         { className: 'col' },
                         _react2.default.createElement(
                             'button',
-                            { className: 'btn btn-primary' },
+                            { className: 'btn btn-outline-primary' },
                             _react2.default.createElement(_Fa2.default, { icon: 'dropbox' }),
                             'Connect'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row mb-1' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            'Factorio Account: ',
+                            this.props.config.factorioUsername
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            'Username: '
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn btn-success', onClick: this.openFactorioLogin.bind(this) },
+                            'Change Login Data'
                         )
                     )
                 ),
@@ -79,6 +111,6 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mo
             )
         );
     }
-}) || _class) || _class);
+}) || _class) || _class) || _class);
 exports.default = ConfigEdit;
 //# sourceMappingURL=ConfigEdit.js.map

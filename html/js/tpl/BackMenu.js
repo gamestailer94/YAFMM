@@ -33,7 +33,7 @@ let BackMenu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mob
                 _react2.default.createElement(
                     'div',
                     { className: 'mr-1 btn-group' },
-                    _react2.default.createElement(_Button2.default, { type: 'secondary', tooltip: 'back', icon: 'arrow-left', id: 'back', click: this.handleClick.bind(this) })
+                    _react2.default.createElement(_Button2.default, { type: 'secondary', tooltip: 'back', icon: 'arrow-left', id: 'Back', click: this.handleClick.bind(this) })
                 )
             )
         );

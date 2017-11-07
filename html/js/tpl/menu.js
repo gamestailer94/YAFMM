@@ -25,10 +25,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 let Menu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class Menu extends _react2.default.Component {
     componentDidMount() {
-        $('menu [data-toggle="tooltip"]').tooltip();
+        $('#menu [data-toggle="tooltip"]').tooltip();
     }
     componentWillUnmount() {
-        $('menu [data-toggle="tooltip"]').tooltip('dispose');
+        $('#menu [data-toggle="tooltip"]').tooltip('dispose');
+    }
+    componentWillUpdate() {
+        $('#menu [data-toggle="tooltip"]').tooltip('dispose');
+    }
+    componentDidUpdate() {
+        $('#menu [data-toggle="tooltip"]').tooltip();
     }
 
     getMenu() {
@@ -45,7 +51,7 @@ let Menu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxRea
             { className: 'position-fixed bg-dark w-100 menu mt-0 t-0' },
             _react2.default.createElement(
                 'div',
-                { className: 'container' },
+                { className: 'container', id: 'menu' },
                 this.getMenu()
             )
         );
