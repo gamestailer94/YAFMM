@@ -37,7 +37,7 @@ window.logger.error = (err) => {
     window.logger.oldError(err);
 };
 
-import Page from './js/tpl/Page'
+import Page from './js/component/Page'
 import Config from './js/model/Config'
 import State from './js/model/State'
 

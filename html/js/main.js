@@ -20,7 +20,7 @@ var _path2 = _interopRequireDefault(_path);
 
 var _mobx = require('mobx');
 
-var _Page = require('./js/tpl/Page');
+var _Page = require('./js/component/Page');
 
 var _Page2 = _interopRequireDefault(_Page);
 
