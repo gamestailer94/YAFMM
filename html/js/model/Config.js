@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
 
 var _mobx = require('mobx');
 
@@ -71,16 +71,20 @@ let Config = (_class = class Config {
 
         _initDefineProp(this, 'factorioUsername', _descriptor4, this);
 
-        _initDefineProp(this, 'factorioPassEncrypted', _descriptor5, this);
+        _initDefineProp(this, 'factorioPassword', _descriptor5, this);
+
+        _initDefineProp(this, 'factorioSavePw', _descriptor6, this);
 
         this.GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
         this.GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
 
-        _initDefineProp(this, 'GoogleAccessToken', _descriptor6, this);
+        _initDefineProp(this, 'GoogleAccessToken', _descriptor7, this);
 
-        _initDefineProp(this, 'GoogleRefreshToken', _descriptor7, this);
+        _initDefineProp(this, 'GoogleRefreshToken', _descriptor8, this);
 
-        _initDefineProp(this, 'GoogleTokenValidTill', _descriptor8, this);
+        _initDefineProp(this, 'GoogleTokenValidTill', _descriptor9, this);
+
+        _initDefineProp(this, 'firstRun', _descriptor10, this);
     }
 
     get activeProfile() {
@@ -132,6 +136,11 @@ let Config = (_class = class Config {
                             gameVersionObject.hydrate(gameVersion);
                             this.gameVersions.push(gameVersionObject);
                         });
+                        this.GoogleAccessToken = data.GoogleAccessToken;
+                        this.GoogleRefreshToken = data.GoogleRefreshToken;
+                        this.GoogleTokenValidTill = data.GoogleTokenValidTill;
+                        this.factorioUsername = data.factorioUsername;
+                        this.factorioPass = data.factorioPass;
                         resolve();
                     });
                 } else {
@@ -213,25 +222,35 @@ let Config = (_class = class Config {
     initializer: function () {
         return '';
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassEncrypted', [_mobx.observable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassword', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'GoogleAccessToken', [_mobx.observable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'factorioSavePw', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return true;
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'GoogleAccessToken', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'GoogleRefreshToken', [_mobx.observable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'GoogleRefreshToken', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'GoogleTokenValidTill', [_mobx.observable], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'GoogleTokenValidTill', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
+    }
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return true;
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'activeProfile', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'activeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextProfileId', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextProfileId'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'loadProfiles', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'loadProfiles'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeProfile'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'removeGameVersion', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'removeGameVersion'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'importModFromProfile', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'importModFromProfile'), _class.prototype)), _class);
 exports.default = Config;

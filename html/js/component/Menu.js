@@ -38,7 +38,7 @@ let Menu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxRea
     }
 
     getMenu() {
-        if (this.props.state.dislpayMenu) {
+        if (this.props.state.displayMenu) {
             if (this.props.state.page === 'main') {
                 return _react2.default.createElement(_MainMenu2.default, null);
             } else {

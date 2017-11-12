@@ -5,7 +5,13 @@ import {inject, observer} from 'mobx-react'
 @inject(['state']) @observer
 class BackMenu extends React.Component {
     handleClick(){
-        this.props.state.page = 'main';
+        if(this.props.state.prevPage !== ''){
+            let prevPage = this.props.state.prevPage;
+            this.props.state.prevPage = '';
+            this.props.state.page = prevPage;
+        }else {
+            this.props.state.page = 'main';
+        }
     }
 
     render(){

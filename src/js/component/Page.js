@@ -13,23 +13,27 @@ import GoogleOAuth from "./GoogleOAuth";
 class Page extends React.Component {
     render() {
         let content;
-       switch(this.props.state.page){
-           case 'editProfile':
-               content = <ProfileConfig/>;
-               break;
-           case 'config':
-               content = <ConfigEdit/>;
-               break;
-           case 'factorioLogin':
-               content = <FactorioLogin/>;
-               break;
-           case 'googleOAuth':
-               content = <GoogleOAuth/>;
-               break;
-           case 'main':
-           default:
-               content = <ModList/>;
-               break;
+        if(this.props.config.firstRun){
+            content = '';
+        }else {
+            switch (this.props.state.page) {
+                case 'editProfile':
+                    content = <ProfileConfig/>;
+                    break;
+                case 'config':
+                    content = <ConfigEdit/>;
+                    break;
+                case 'factorioLogin':
+                    content = <FactorioLogin/>;
+                    break;
+                case 'googleOAuth':
+                    content = <GoogleOAuth/>;
+                    break;
+                case 'main':
+                default:
+                    content = <ModList/>;
+                    break;
+            }
         }
         return <div>
             <Menu/>

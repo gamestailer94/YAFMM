@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 var _mobx = require('mobx');
 
@@ -63,9 +63,7 @@ let State = (_class = class State {
 
         _initDefineProp(this, 'working', _descriptor5, this);
 
-        _initDefineProp(this, 'factorioPassPlain', _descriptor6, this);
-
-        _initDefineProp(this, 'dislpayMenu', _descriptor7, this);
+        _initDefineProp(this, 'displayMenu', _descriptor6, this);
     }
 
     addToQueue(todo) {
@@ -122,12 +120,7 @@ let State = (_class = class State {
     initializer: function () {
         return false;
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassPlain', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return '';
-    }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'dislpayMenu', [_mobx.observable], {
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'displayMenu', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;

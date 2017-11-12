@@ -45,23 +45,27 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class Page extends _react2.default.Component {
     render() {
         let content;
-        switch (this.props.state.page) {
-            case 'editProfile':
-                content = _react2.default.createElement(_ProfileConfig2.default, null);
-                break;
-            case 'config':
-                content = _react2.default.createElement(_ConfigEdit2.default, null);
-                break;
-            case 'factorioLogin':
-                content = _react2.default.createElement(_FactorioLogin2.default, null);
-                break;
-            case 'googleOAuth':
-                content = _react2.default.createElement(_GoogleOAuth2.default, null);
-                break;
-            case 'main':
-            default:
-                content = _react2.default.createElement(_ModList2.default, null);
-                break;
+        if (this.props.config.firstRun) {
+            content = '';
+        } else {
+            switch (this.props.state.page) {
+                case 'editProfile':
+                    content = _react2.default.createElement(_ProfileConfig2.default, null);
+                    break;
+                case 'config':
+                    content = _react2.default.createElement(_ConfigEdit2.default, null);
+                    break;
+                case 'factorioLogin':
+                    content = _react2.default.createElement(_FactorioLogin2.default, null);
+                    break;
+                case 'googleOAuth':
+                    content = _react2.default.createElement(_GoogleOAuth2.default, null);
+                    break;
+                case 'main':
+                default:
+                    content = _react2.default.createElement(_ModList2.default, null);
+                    break;
+            }
         }
         return _react2.default.createElement(
             'div',

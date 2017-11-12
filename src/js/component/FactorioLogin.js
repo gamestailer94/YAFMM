@@ -4,6 +4,15 @@ import {inject, observer} from 'mobx-react'
 @inject('config') @inject('state') @observer
 class FactorioLogin extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            'username': this.props.config.factorioUsername,
+            'password': this.props.config.factorioPassword,
+            'savePw': this.props.config.factorioSavePw
+        }
+    }
+
     componentDidMount(){
         $('div.content [data-toggle="tooltip"]').tooltip()
     }
@@ -11,11 +20,30 @@ class FactorioLogin extends React.Component {
         $('div.content[data-toggle="tooltip"]').tooltip('dispose')
     }
 
+    changeUsername(e){
+        this.setState({'username': e.target.value});
+    }
+
+    changePassword(e){
+        this.setState({'password': e.target.value});
+    }
+
+    changeSavePw(e){
+        this.setState({'savePw': e.target.checked})
+    }
+
     onSave(){
+        this.props.config.factorioUsername = this.state.username;
+        this.props.config.factorioPassword = this.state.password;
+        this.props.config.factorioSavePw = this.state.savePw;
+        let prevPage = this.props.state.prevPage;
+        this.props.state.prevPage = '';
+        this.props.state.page = prevPage;
     }
 
 
     render(){
+        console.log(this.state);
         return <div>
             <div className="row">
                 <div className="col text-center">
@@ -27,19 +55,20 @@ class FactorioLogin extends React.Component {
                 <div className="col-6 m-auto">
                     <div className="form-group">
                         <label>Username</label>
-                        <input className="form-control" type="text" value={this.props.config.factorioUsername} placeholder="Username" />
+                        <input className="form-control" type="text" value={this.state.username} onChange={this.changeUsername.bind(this)} placeholder="Username" />
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input className="form-control" type="password" value={this.props.state.factorioPassPlain} placeholder="Password" />
+                        <input className="form-control" type="password" value={this.state.password} onChange={this.changePassword.bind(this)} placeholder="Password" />
                     </div>
                     <div className="form-check">
                         <label className="custom-checkbox custom-control">
-                            <input type="checkbox" className="custom-control-input" />
+                            <input type="checkbox" className="custom-control-input" onChange={this.changeSavePw.bind(this)}
+                                   checked={this.state.savePw} />
                             <span className="custom-control-indicator" />
                             <span className="custom-control-description">Save Password
                                 <i className="fa fa-lg fa-fw fa-question-circle-o" data-toggle="tooltip" data-placement="right"
-                                   title="Your Password will be Encrypted"/></span>
+                                   title="Your Password will only be stored locally"/></span>
                         </label>
                     </div>
                     <div className="form-group">

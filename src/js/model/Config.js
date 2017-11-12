@@ -9,12 +9,16 @@ class Config {
     @observable lastProfileId = 0;
     @observable gameVersions = [new GameVersion()];
     @observable factorioUsername = '';
-    @observable factorioPassEncrypted = '';
+    @observable factorioPassword = '';
+    @observable factorioSavePw = true;
     GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
     GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
     @observable GoogleAccessToken= '';
     @observable GoogleRefreshToken= '';
     @observable GoogleTokenValidTill='';
+
+
+    @observable firstRun = true;
 
     @computed get activeProfile(){
         let activeProfile = null;
@@ -66,6 +70,11 @@ class Config {
                             gameVersionObject.hydrate(gameVersion);
                             this.gameVersions.push(gameVersionObject);
                         });
+                        this.GoogleAccessToken = data.GoogleAccessToken;
+                        this.GoogleRefreshToken = data.GoogleRefreshToken;
+                        this.GoogleTokenValidTill = data.GoogleTokenValidTill;
+                        this.factorioUsername = data.factorioUsername;
+                        this.factorioPass = data.factorioPass;
                         resolve();
                     })
                 }else {

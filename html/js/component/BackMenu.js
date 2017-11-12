@@ -20,7 +20,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 let BackMenu = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class BackMenu extends _react2.default.Component {
     handleClick() {
-        this.props.state.page = 'main';
+        if (this.props.state.prevPage !== '') {
+            let prevPage = this.props.state.prevPage;
+            this.props.state.prevPage = '';
+            this.props.state.page = prevPage;
+        } else {
+            this.props.state.page = 'main';
+        }
     }
 
     render() {

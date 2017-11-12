@@ -16,6 +16,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class FactorioLogin extends _react2.default.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            'username': this.props.config.factorioUsername,
+            'password': this.props.config.factorioPassword,
+            'savePw': this.props.config.factorioSavePw
+        };
+    }
+
     componentDidMount() {
         $('div.content [data-toggle="tooltip"]').tooltip();
     }
@@ -23,9 +32,29 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
         $('div.content[data-toggle="tooltip"]').tooltip('dispose');
     }
 
-    onSave() {}
+    changeUsername(e) {
+        this.setState({ 'username': e.target.value });
+    }
+
+    changePassword(e) {
+        this.setState({ 'password': e.target.value });
+    }
+
+    changeSavePw(e) {
+        this.setState({ 'savePw': e.target.checked });
+    }
+
+    onSave() {
+        this.props.config.factorioUsername = this.state.username;
+        this.props.config.factorioPassword = this.state.password;
+        this.props.config.factorioSavePw = this.state.savePw;
+        let prevPage = this.props.state.prevPage;
+        this.props.state.prevPage = '';
+        this.props.state.page = prevPage;
+    }
 
     render() {
+        console.log(this.state);
         return _react2.default.createElement(
             'div',
             null,
@@ -61,7 +90,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                             null,
                             'Username'
                         ),
-                        _react2.default.createElement('input', { className: 'form-control', type: 'text', value: this.props.config.factorioUsername, placeholder: 'Username' })
+                        _react2.default.createElement('input', { className: 'form-control', type: 'text', value: this.state.username, onChange: this.changeUsername.bind(this), placeholder: 'Username' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -71,7 +100,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                             null,
                             'Password'
                         ),
-                        _react2.default.createElement('input', { className: 'form-control', type: 'password', value: this.props.state.factorioPassPlain, placeholder: 'Password' })
+                        _react2.default.createElement('input', { className: 'form-control', type: 'password', value: this.state.password, onChange: this.changePassword.bind(this), placeholder: 'Password' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -79,14 +108,15 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                         _react2.default.createElement(
                             'label',
                             { className: 'custom-checkbox custom-control' },
-                            _react2.default.createElement('input', { type: 'checkbox', className: 'custom-control-input' }),
+                            _react2.default.createElement('input', { type: 'checkbox', className: 'custom-control-input', onChange: this.changeSavePw.bind(this),
+                                checked: this.state.savePw }),
                             _react2.default.createElement('span', { className: 'custom-control-indicator' }),
                             _react2.default.createElement(
                                 'span',
                                 { className: 'custom-control-description' },
                                 'Save Password',
                                 _react2.default.createElement('i', { className: 'fa fa-lg fa-fw fa-question-circle-o', 'data-toggle': 'tooltip', 'data-placement': 'right',
-                                    title: 'Your Password will be Encrypted' })
+                                    title: 'Your Password will only be stored locally' })
                             )
                         )
                     ),

@@ -20,7 +20,7 @@ export default class Menu extends React.Component
     }
 
     getMenu(){
-        if(this.props.state.dislpayMenu) {
+        if(this.props.state.displayMenu) {
             if (this.props.state.page === 'main') {
                 return <MainMenu/>
             } else {
