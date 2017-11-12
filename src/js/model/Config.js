@@ -10,6 +10,11 @@ class Config {
     @observable gameVersions = [new GameVersion()];
     @observable factorioUsername = '';
     @observable factorioPassEncrypted = '';
+    GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
+    GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
+    @observable GoogleAccessToken= '';
+    @observable GoogleRefreshToken= '';
+    @observable GoogleTokenValidTill='';
 
     @computed get activeProfile(){
         let activeProfile = null;

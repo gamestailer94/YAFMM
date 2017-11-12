@@ -25,6 +25,10 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
         this.props.state.page = 'factorioLogin';
     }
 
+    makeGoogleOAuth() {
+        this.props.state.page = 'googleOAuth';
+    }
+
     render() {
         return _react2.default.createElement(
             'div',
@@ -49,7 +53,7 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
                         { className: 'col' },
                         _react2.default.createElement(
                             'button',
-                            { className: 'btn btn-outline-primary' },
+                            { className: 'btn btn-outline-primary', onClick: this.makeGoogleOAuth.bind(this) },
                             _react2.default.createElement(_Fa2.default, { icon: 'google' }),
                             'Connect'
                         )
@@ -88,7 +92,7 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
                             'span',
                             null,
                             'Factorio Account: ',
-                            this.props.config.factorioUsername
+                            this.props.config.factorioUsername || 'None'
                         ),
                         _react2.default.createElement(
                             'span',

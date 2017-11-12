@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8;
 
 var _mobx = require('mobx');
 
@@ -72,6 +72,15 @@ let Config = (_class = class Config {
         _initDefineProp(this, 'factorioUsername', _descriptor4, this);
 
         _initDefineProp(this, 'factorioPassEncrypted', _descriptor5, this);
+
+        this.GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
+        this.GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
+
+        _initDefineProp(this, 'GoogleAccessToken', _descriptor6, this);
+
+        _initDefineProp(this, 'GoogleRefreshToken', _descriptor7, this);
+
+        _initDefineProp(this, 'GoogleTokenValidTill', _descriptor8, this);
     }
 
     get activeProfile() {
@@ -205,6 +214,21 @@ let Config = (_class = class Config {
         return '';
     }
 }), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassEncrypted', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'GoogleAccessToken', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'GoogleRefreshToken', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'GoogleTokenValidTill', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';

@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dec, _class;
+var _dec, _dec2, _class;
 
 var _react = require('react');
 
@@ -14,7 +14,7 @@ var _mobxReact = require('mobx-react');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, _mobxReact.observer)(_class = class FactorioLogin extends _react2.default.Component {
+let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class FactorioLogin extends _react2.default.Component {
 
     componentDidMount() {
         $('div.content [data-toggle="tooltip"]').tooltip();
@@ -22,6 +22,8 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, 
     componentWillUnmount() {
         $('div.content[data-toggle="tooltip"]').tooltip('dispose');
     }
+
+    onSave() {}
 
     render() {
         return _react2.default.createElement(
@@ -69,7 +71,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, 
                             null,
                             'Password'
                         ),
-                        _react2.default.createElement('input', { className: 'form-control', type: 'password', placeholder: 'Password' })
+                        _react2.default.createElement('input', { className: 'form-control', type: 'password', value: this.props.state.factorioPassPlain, placeholder: 'Password' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -93,7 +95,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, 
                         { className: 'form-group' },
                         _react2.default.createElement(
                             'button',
-                            { className: 'btn btn-outline-primary' },
+                            { className: 'btn btn-outline-primary', onClick: this.onSave.bind(this) },
                             'Save'
                         )
                     )
@@ -101,6 +103,6 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = (0, 
             )
         );
     }
-}) || _class) || _class);
+}) || _class) || _class) || _class);
 exports.default = FactorioLogin;
 //# sourceMappingURL=FactorioLogin.js.map

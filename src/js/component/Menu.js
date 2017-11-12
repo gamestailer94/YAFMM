@@ -20,10 +20,14 @@ export default class Menu extends React.Component
     }
 
     getMenu(){
-        if(this.props.state.page === 'main'){
-            return <MainMenu />
+        if(this.props.state.dislpayMenu) {
+            if (this.props.state.page === 'main') {
+                return <MainMenu/>
+            } else {
+                return <BackMenu/>
+            }
         }else{
-            return <BackMenu />
+            return <div className="row mt-1" />
         }
     }
 

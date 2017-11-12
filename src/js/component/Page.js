@@ -6,6 +6,7 @@ import ProfileConfig from './ProfileConfig'
 import Loader from './Loader'
 import ConfigEdit from "./ConfigEdit";
 import FactorioLogin from "./FactorioLogin";
+import GoogleOAuth from "./GoogleOAuth";
 
 
 @inject(['state']) @observer
@@ -21,6 +22,9 @@ class Page extends React.Component {
                break;
            case 'factorioLogin':
                content = <FactorioLogin/>;
+               break;
+           case 'googleOAuth':
+               content = <GoogleOAuth/>;
                break;
            case 'main':
            default:

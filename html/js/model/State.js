@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 var _mobx = require('mobx');
 
@@ -62,6 +62,8 @@ let State = (_class = class State {
         _initDefineProp(this, 'working', _descriptor4, this);
 
         _initDefineProp(this, 'factorioPassPlain', _descriptor5, this);
+
+        _initDefineProp(this, 'dislpayMenu', _descriptor6, this);
     }
 
     addToQueue(todo) {
@@ -117,6 +119,11 @@ let State = (_class = class State {
     enumerable: true,
     initializer: function () {
         return '';
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'dislpayMenu', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return true;
     }
 }), _applyDecoratedDescriptor(_class.prototype, 'addToQueue', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addToQueue'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'nextInQueue', [_mobx.computed], Object.getOwnPropertyDescriptor(_class.prototype, 'nextInQueue'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'acceptTask', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'acceptTask'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'addButton', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'addButton'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setBtnWorking', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setBtnWorking'), _class.prototype), _applyDecoratedDescriptor(_class.prototype, 'setBtnNotWorking', [_mobx.action], Object.getOwnPropertyDescriptor(_class.prototype, 'setBtnNotWorking'), _class.prototype)), _class);
 exports.default = State;

@@ -1,7 +1,7 @@
 import React from "react";
 import {inject, observer} from 'mobx-react'
 
-@inject('config') @observer
+@inject('config') @inject('state') @observer
 class FactorioLogin extends React.Component {
 
     componentDidMount(){
@@ -9,6 +9,9 @@ class FactorioLogin extends React.Component {
     }
     componentWillUnmount(){
         $('div.content[data-toggle="tooltip"]').tooltip('dispose')
+    }
+
+    onSave(){
     }
 
 
@@ -28,7 +31,7 @@ class FactorioLogin extends React.Component {
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input className="form-control" type="password" placeholder="Password" />
+                        <input className="form-control" type="password" value={this.props.state.factorioPassPlain} placeholder="Password" />
                     </div>
                     <div className="form-check">
                         <label className="custom-checkbox custom-control">
@@ -40,7 +43,7 @@ class FactorioLogin extends React.Component {
                         </label>
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-outline-primary">Save</button>
+                        <button className="btn btn-outline-primary" onClick={this.onSave.bind(this)} >Save</button>
                     </div>
                 </div>
             </div>

@@ -36,6 +36,10 @@ var _FactorioLogin = require('./FactorioLogin');
 
 var _FactorioLogin2 = _interopRequireDefault(_FactorioLogin);
 
+var _GoogleOAuth = require('./GoogleOAuth');
+
+var _GoogleOAuth2 = _interopRequireDefault(_GoogleOAuth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class Page extends _react2.default.Component {
@@ -50,6 +54,9 @@ let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxRea
                 break;
             case 'factorioLogin':
                 content = _react2.default.createElement(_FactorioLogin2.default, null);
+                break;
+            case 'googleOAuth':
+                content = _react2.default.createElement(_GoogleOAuth2.default, null);
                 break;
             case 'main':
             default:

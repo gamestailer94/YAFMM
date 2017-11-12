@@ -1,8 +1,8 @@
 'use strict';
 
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const path = require('path');
-const _ = require('underscore');
+const _ = require('lodash');
 const url = require('url');
 const windowStateKeeper = require('electron-window-state');
 const winston = require('winston');
@@ -68,6 +68,20 @@ function start() {
     })
 }
 
+
+function openOauthPanel(event,url){
+    let panelOptions = {
+        parent: windows.mainWindow,
+        modal: true
+    };
+    windows.oAuthPanel = new BrowserWindow(panelOptions);
+    windows.oAuthPanel.loadURL(url);
+    windows.oAuthPanel.on('close', () => {
+        delete windows.oAuthPanel;
+    })
+}
+
+ipcMain.on('openOAuthPanel',openOauthPanel);
 
 app.on('ready', start);
 

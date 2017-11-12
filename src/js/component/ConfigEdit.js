@@ -9,6 +9,10 @@ class ConfigEdit extends React.Component {
         this.props.state.page='factorioLogin';
     }
 
+    makeGoogleOAuth(){
+        this.props.state.page='googleOAuth'
+    }
+
     render() {
         return <div className="row">
             <div className="col">
@@ -17,7 +21,7 @@ class ConfigEdit extends React.Component {
                         <span>G-Drive: not Connected</span>
                     </div>
                     <div className="col">
-                        <button className="btn btn-outline-primary"><Fa icon='google' />Connect</button>
+                        <button className="btn btn-outline-primary" onClick={this.makeGoogleOAuth.bind(this)}><Fa icon='google' />Connect</button>
                     </div>
                 </div>
                 <div className="row mb-1">
@@ -30,7 +34,7 @@ class ConfigEdit extends React.Component {
                 </div>
                 <div className="row mb-1">
                     <div className="col">
-                        <span>Factorio Account: {this.props.config.factorioUsername}</span>
+                        <span>Factorio Account: {this.props.config.factorioUsername || 'None'}</span>
                         <span>Username: </span>
                     </div>
                     <div className="col">
