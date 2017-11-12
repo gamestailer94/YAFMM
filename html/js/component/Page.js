@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dec, _class;
+var _dec, _dec2, _class;
 
 var _react = require('react');
 
@@ -40,33 +40,50 @@ var _GoogleOAuth = require('./GoogleOAuth');
 
 var _GoogleOAuth2 = _interopRequireDefault(_GoogleOAuth);
 
+var _FirstRunWizard = require('./FirstRunWizard');
+
+var _FirstRunWizard2 = _interopRequireDefault(_FirstRunWizard);
+
+var _DropboxOAuth = require('./DropboxOAuth');
+
+var _DropboxOAuth2 = _interopRequireDefault(_DropboxOAuth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxReact.observer)(_class = class Page extends _react2.default.Component {
+let Page = (_dec = (0, _mobxReact.inject)('state'), _dec2 = (0, _mobxReact.inject)('config'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class Page extends _react2.default.Component {
     render() {
         let content;
+        let page = this.props.state.page;
+
         if (this.props.config.firstRun) {
-            content = '';
-        } else {
-            switch (this.props.state.page) {
-                case 'editProfile':
-                    content = _react2.default.createElement(_ProfileConfig2.default, null);
-                    break;
-                case 'config':
-                    content = _react2.default.createElement(_ConfigEdit2.default, null);
-                    break;
-                case 'factorioLogin':
-                    content = _react2.default.createElement(_FactorioLogin2.default, null);
-                    break;
-                case 'googleOAuth':
-                    content = _react2.default.createElement(_GoogleOAuth2.default, null);
-                    break;
-                case 'main':
-                default:
-                    content = _react2.default.createElement(_ModList2.default, null);
-                    break;
-            }
+            page = 'firstRun';
         }
+
+        switch (page) {
+            case 'editProfile':
+                content = _react2.default.createElement(_ProfileConfig2.default, null);
+                break;
+            case 'config':
+                content = _react2.default.createElement(_ConfigEdit2.default, null);
+                break;
+            case 'factorioLogin':
+                content = _react2.default.createElement(_FactorioLogin2.default, null);
+                break;
+            case 'googleOAuth':
+                content = _react2.default.createElement(_GoogleOAuth2.default, null);
+                break;
+            case 'dropboxOAuth':
+                content = _react2.default.createElement(_DropboxOAuth2.default, null);
+                break;
+            case 'firstRun':
+                content = _react2.default.createElement(_FirstRunWizard2.default, null);
+                break;
+            case 'main':
+            default:
+                content = _react2.default.createElement(_ModList2.default, null);
+                break;
+        }
+
         return _react2.default.createElement(
             'div',
             null,
@@ -83,6 +100,6 @@ let Page = (_dec = (0, _mobxReact.inject)(['state']), _dec(_class = (0, _mobxRea
             )
         );
     }
-}) || _class) || _class);
+}) || _class) || _class) || _class);
 exports.default = Page;
 //# sourceMappingURL=Page.js.map

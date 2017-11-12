@@ -13,9 +13,12 @@ class Config {
     @observable factorioSavePw = true;
     GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
     GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
+    DropboxClientId = "qinr0h3tth1vpvk";
+    DropboxClientSecret = 'f9utkik99rlhr4w';
     @observable GoogleAccessToken= '';
     @observable GoogleRefreshToken= '';
     @observable GoogleTokenValidTill='';
+    @observable DropboxAccessToken= '';
 
 
     @observable firstRun = true;
@@ -75,6 +78,7 @@ class Config {
                         this.GoogleTokenValidTill = data.GoogleTokenValidTill;
                         this.factorioUsername = data.factorioUsername;
                         this.factorioPass = data.factorioPass;
+                        this.firstRun = data.firstRun;
                         resolve();
                     })
                 }else {

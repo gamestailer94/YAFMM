@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
 
 var _mobx = require('mobx');
 
@@ -77,6 +77,8 @@ let Config = (_class = class Config {
 
         this.GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
         this.GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
+        this.DropboxClientId = "qinr0h3tth1vpvk";
+        this.DropboxClientSecret = 'f9utkik99rlhr4w';
 
         _initDefineProp(this, 'GoogleAccessToken', _descriptor7, this);
 
@@ -84,7 +86,9 @@ let Config = (_class = class Config {
 
         _initDefineProp(this, 'GoogleTokenValidTill', _descriptor9, this);
 
-        _initDefineProp(this, 'firstRun', _descriptor10, this);
+        _initDefineProp(this, 'DropboxAccessToken', _descriptor10, this);
+
+        _initDefineProp(this, 'firstRun', _descriptor11, this);
     }
 
     get activeProfile() {
@@ -141,6 +145,7 @@ let Config = (_class = class Config {
                         this.GoogleTokenValidTill = data.GoogleTokenValidTill;
                         this.factorioUsername = data.factorioUsername;
                         this.factorioPass = data.factorioPass;
+                        this.firstRun = data.firstRun;
                         resolve();
                     });
                 } else {
@@ -247,7 +252,12 @@ let Config = (_class = class Config {
     initializer: function () {
         return '';
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'DropboxAccessToken', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;

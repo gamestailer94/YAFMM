@@ -54,7 +54,6 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
     }
 
     render() {
-        console.log(this.state);
         return _react2.default.createElement(
             'div',
             null,
@@ -63,16 +62,11 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                 { className: 'row' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'col text-center' },
+                    { className: 'col-6 m-auto' },
                     _react2.default.createElement(
                         'h4',
-                        null,
-                        'To download Mods and update Factorio to the latest version'
-                    ),
-                    _react2.default.createElement(
-                        'h4',
-                        null,
-                        'this App needs your Login Data for Factorio'
+                        { className: 'text-center' },
+                        'To download Mods and update Factorio to the latest version YAFMM needs your Login Data for Factorio'
                     )
                 )
             ),

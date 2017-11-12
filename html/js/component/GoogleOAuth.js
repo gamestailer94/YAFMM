@@ -52,7 +52,6 @@ let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxRea
             let queryData = _url2.default.parse(request.url, true);
             if (queryData.query.error) {
                 window.logger.error(queryData.query.error);
-                this.props.state.error = 'oAuthError';
                 this.pageBack();
             } else {
                 let code = queryData.query.code;

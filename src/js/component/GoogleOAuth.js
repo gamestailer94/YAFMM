@@ -34,7 +34,6 @@ class GoogleOAuth extends React.Component {
             let queryData = url.parse(request.url, true);
             if(queryData.query.error){
                 window.logger.error(queryData.query.error);
-                this.props.state.error = 'oAuthError';
                 this.pageBack();
             }else {
                 let code = queryData.query.code;

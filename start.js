@@ -72,7 +72,10 @@ function start() {
 function openOauthPanel(event,url){
     let panelOptions = {
         parent: windows.mainWindow,
-        modal: true
+        modal: true,
+        webPreferences: {
+            nodeIntegration: false
+        }
     };
     windows.oAuthPanel = new BrowserWindow(panelOptions);
     windows.oAuthPanel.loadURL(url);

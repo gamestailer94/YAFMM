@@ -21,8 +21,22 @@ class ConfigEdit extends React.Component {
         this.props.config.GoogleTokenValidTill = '';
     }
 
+
+    removeDropboxOAuth(){
+        this.props.config.DropboxAccessToken = '';
+    }
+
+    makeDropboxOAuth(){
+        this.props.state.prevPage = 'config';
+        this.props.state.page='dropboxOAuth'
+    }
+
     googleState(){
         return this.props.config.GoogleRefreshToken !== '';
+    }
+    
+    dropboxState(){
+        return this.props.config.DropboxAccessToken !== '';
     }
 
     getGoogleBtn(){
@@ -30,6 +44,13 @@ class ConfigEdit extends React.Component {
             return <button className="btn btn-outline-danger" onClick={this.removeGoogleOAuth.bind(this)}><Fa icon='google' />Disconnect</button>
         }
         return <button className="btn btn-outline-primary" onClick={this.makeGoogleOAuth.bind(this)}><Fa icon='google' />Connect</button>
+    }
+
+    getDropboxBtn(){
+        if(this.dropboxState()){
+            return <button className="btn btn-outline-danger" onClick={this.removeDropboxOAuth.bind(this)}><Fa icon='dropbox' />Disconnect</button>
+        }
+        return <button className="btn btn-outline-primary" onClick={this.makeDropboxOAuth.bind(this)}><Fa icon='dropbox' />Connect</button>
     }
 
     render() {
@@ -45,10 +66,10 @@ class ConfigEdit extends React.Component {
                 </div>
                 <div className="row mb-2">
                     <div className="col">
-                        <span>Dropbox: not Connected</span>
+                        <span>Dropbox: {this.dropboxState()?"Conntected":"Not Connected"}</span>
                     </div>
                     <div className="col">
-                        <button className="btn btn-outline-primary"><Fa icon="dropbox"/>Connect</button>
+                        {this.getDropboxBtn()}
                     </div>
                 </div>
                 <div className="row mb-2">

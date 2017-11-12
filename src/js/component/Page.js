@@ -7,34 +7,45 @@ import Loader from './Loader'
 import ConfigEdit from "./ConfigEdit";
 import FactorioLogin from "./FactorioLogin";
 import GoogleOAuth from "./GoogleOAuth";
+import FirstRunWizard from "./FirstRunWizard";
+import DropboxOAuth from "./DropboxOAuth";
 
 
-@inject(['state']) @observer
+@inject('state') @inject('config') @observer
 class Page extends React.Component {
     render() {
         let content;
+        let page = this.props.state.page;
+
         if(this.props.config.firstRun){
-            content = '';
-        }else {
-            switch (this.props.state.page) {
-                case 'editProfile':
-                    content = <ProfileConfig/>;
-                    break;
-                case 'config':
-                    content = <ConfigEdit/>;
-                    break;
-                case 'factorioLogin':
-                    content = <FactorioLogin/>;
-                    break;
-                case 'googleOAuth':
-                    content = <GoogleOAuth/>;
-                    break;
-                case 'main':
-                default:
-                    content = <ModList/>;
-                    break;
-            }
+            page = 'firstRun';
         }
+
+        switch (page) {
+            case 'editProfile':
+                content = <ProfileConfig/>;
+                break;
+            case 'config':
+                content = <ConfigEdit/>;
+                break;
+            case 'factorioLogin':
+                content = <FactorioLogin/>;
+                break;
+            case 'googleOAuth':
+                content = <GoogleOAuth/>;
+                break;
+            case 'dropboxOAuth':
+                content = <DropboxOAuth/>;
+                break;
+            case 'firstRun':
+                content = <FirstRunWizard/>;
+                break;
+            case 'main':
+            default:
+                content = <ModList/>;
+                break;
+        }
+
         return <div>
             <Menu/>
             <div className="content">

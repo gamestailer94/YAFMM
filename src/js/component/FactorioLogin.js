@@ -43,12 +43,11 @@ class FactorioLogin extends React.Component {
 
 
     render(){
-        console.log(this.state);
         return <div>
             <div className="row">
-                <div className="col text-center">
-                    <h4>To download Mods and update Factorio to the latest version</h4>
-                    <h4>this App needs your Login Data for Factorio</h4>
+                <div className="col-6 m-auto">
+                    <h4 className="text-center">To download Mods and update Factorio to the latest version
+                        YAFMM needs your Login Data for Factorio</h4>
                 </div>
             </div>
             <div className="row">

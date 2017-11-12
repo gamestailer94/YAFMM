@@ -37,8 +37,21 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
         this.props.config.GoogleTokenValidTill = '';
     }
 
+    removeDropboxOAuth() {
+        this.props.config.DropboxAccessToken = '';
+    }
+
+    makeDropboxOAuth() {
+        this.props.state.prevPage = 'config';
+        this.props.state.page = 'dropboxOAuth';
+    }
+
     googleState() {
         return this.props.config.GoogleRefreshToken !== '';
+    }
+
+    dropboxState() {
+        return this.props.config.DropboxAccessToken !== '';
     }
 
     getGoogleBtn() {
@@ -54,6 +67,23 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
             'button',
             { className: 'btn btn-outline-primary', onClick: this.makeGoogleOAuth.bind(this) },
             _react2.default.createElement(_Fa2.default, { icon: 'google' }),
+            'Connect'
+        );
+    }
+
+    getDropboxBtn() {
+        if (this.dropboxState()) {
+            return _react2.default.createElement(
+                'button',
+                { className: 'btn btn-outline-danger', onClick: this.removeDropboxOAuth.bind(this) },
+                _react2.default.createElement(_Fa2.default, { icon: 'dropbox' }),
+                'Disconnect'
+            );
+        }
+        return _react2.default.createElement(
+            'button',
+            { className: 'btn btn-outline-primary', onClick: this.makeDropboxOAuth.bind(this) },
+            _react2.default.createElement(_Fa2.default, { icon: 'dropbox' }),
             'Connect'
         );
     }
@@ -93,18 +123,14 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
                         _react2.default.createElement(
                             'span',
                             null,
-                            'Dropbox: not Connected'
+                            'Dropbox: ',
+                            this.dropboxState() ? "Conntected" : "Not Connected"
                         )
                     ),
                     _react2.default.createElement(
                         'div',
                         { className: 'col' },
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'btn btn-outline-primary' },
-                            _react2.default.createElement(_Fa2.default, { icon: 'dropbox' }),
-                            'Connect'
-                        )
+                        this.getDropboxBtn()
                     )
                 ),
                 _react2.default.createElement(
