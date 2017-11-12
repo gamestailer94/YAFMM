@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7;
 
 var _mobx = require('mobx');
 
@@ -55,15 +55,17 @@ let State = (_class = class State {
     constructor() {
         _initDefineProp(this, 'page', _descriptor, this);
 
-        _initDefineProp(this, 'queue', _descriptor2, this);
+        _initDefineProp(this, 'prevPage', _descriptor2, this);
 
-        _initDefineProp(this, 'btn', _descriptor3, this);
+        _initDefineProp(this, 'queue', _descriptor3, this);
 
-        _initDefineProp(this, 'working', _descriptor4, this);
+        _initDefineProp(this, 'btn', _descriptor4, this);
 
-        _initDefineProp(this, 'factorioPassPlain', _descriptor5, this);
+        _initDefineProp(this, 'working', _descriptor5, this);
 
-        _initDefineProp(this, 'dislpayMenu', _descriptor6, this);
+        _initDefineProp(this, 'factorioPassPlain', _descriptor6, this);
+
+        _initDefineProp(this, 'dislpayMenu', _descriptor7, this);
     }
 
     addToQueue(todo) {
@@ -100,27 +102,32 @@ let State = (_class = class State {
     initializer: function () {
         return 'main';
     }
-}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'queue', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return [];
-    }
-}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'btn', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return {};
-    }
-}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'working', [_mobx.observable], {
-    enumerable: true,
-    initializer: function () {
-        return false;
-    }
-}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassPlain', [_mobx.observable], {
+}), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'prevPage', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'dislpayMenu', [_mobx.observable], {
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'queue', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return [];
+    }
+}), _descriptor4 = _applyDecoratedDescriptor(_class.prototype, 'btn', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return {};
+    }
+}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'working', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return false;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'factorioPassPlain', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'dislpayMenu', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;

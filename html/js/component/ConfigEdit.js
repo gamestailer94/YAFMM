@@ -26,6 +26,7 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
     }
 
     makeGoogleOAuth() {
+        this.props.state.prevPage = 'config';
         this.props.state.page = 'googleOAuth';
     }
 

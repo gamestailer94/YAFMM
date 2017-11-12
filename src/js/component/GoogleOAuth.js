@@ -3,10 +3,9 @@ import {ipcRenderer} from 'electron';
 import {inject} from 'mobx-react';
 import http from 'http';
 import url from 'url';
-import fetch from 'fetch';
-import querystring from 'querystring';
+import google from 'googleapis';
 
-@inject('config')
+@inject('config') @inject('state')
 class GoogleOAuth extends React.Component {
 
     constructor(props){
@@ -15,11 +14,19 @@ class GoogleOAuth extends React.Component {
     }
 
     componentDidMount(){
+        this.props.state.dislpayMenu = false;
         let port = Math.floor(Math.random() * (65535-49152)+49152);
-        let gurl = "https://accounts.google.com/o/oauth2/v2/auth?client_id="+this.props.config.GoogleClientId;
-        gurl += "&response_type=code";
-        gurl += "&scope="+encodeURIComponent('https://www.googleapis.com/auth/drive.file');
-        gurl += "&redirect_uri=http://127.0.0.1:"+port;
+
+        let OAuthClient = new google.auth.OAuth2(
+            this.props.config.GoogleClientId,
+            this.props.config.GoogleClientSecret,
+            "http://127.0.0.1:"+port
+        );
+
+        let gurl = OAuthClient.generateAuthUrl({
+            access_type: 'offline',
+            scope: 'https://www.googleapis.com/auth/drive.file',
+        });
         ipcRenderer.send('openOAuthPanel',gurl);
 
         let server = http.createServer();
@@ -36,26 +43,16 @@ class GoogleOAuth extends React.Component {
             }else {
                 let code = queryData.query.code;
 
-                gurl = 'https://www.googleapis.com/oauth2/v4/token';
-
-                let body = {
-                    code: code,
-                    client_id: this.props.config.GoogleClientId,
-                    client_secret: this.props.config.GoogleClientSecret,
-                    grant_type: 'authorization_code',
-                    redirect_uri: 'http://localhost'
-                };
-
-                console.log(querystring.stringify(body));
-                fetch.fetchUrl(gurl, {payload: querystring.stringify(body)}, (error, meta, body) => {
-                    console.log(meta);
-                    console.log(body.toString());
-                    let result = JSON.parse(body.toString());
-                    this.props.config.GoogleAccessToken = result.access_token;
-                    this.props.config.GoogleRefreshToken = refresh_token;
-                    this.props.config.GoogleTokenValidTill = Date.now() + result.expires_in;
-                    console.log(result);
-                });
+                OAuthClient.getToken(code,(err, tokens) =>{
+                    if(err){
+                        window.logger.error(err);
+                    }else{
+                        console.log(tokens);
+                        this.props.config.GoogleAccessToken = tokens.access_token;
+                        this.props.config.GoogleRefreshToken = tokens.refresh_token;
+                        this.props.config.GoogleTokenValidTill = tokens.expiry_date;
+                    }
+                })
             }
         };
 

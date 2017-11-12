@@ -2,6 +2,7 @@ import {observable, action, computed, extendObservable} from 'mobx'
 
 class State {
     @observable page = 'main';
+    @observable prevPage = '';
     @observable queue = [];
     @observable btn = {};
     @observable working = false;

@@ -10,6 +10,7 @@ class ConfigEdit extends React.Component {
     }
 
     makeGoogleOAuth(){
+        this.props.state.prevPage = 'config';
         this.props.state.page='googleOAuth'
     }
 

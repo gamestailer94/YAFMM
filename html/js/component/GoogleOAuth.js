@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _dec, _class;
+var _dec, _dec2, _class;
 
 var _react = require('react');
 
@@ -22,17 +22,13 @@ var _url = require('url');
 
 var _url2 = _interopRequireDefault(_url);
 
-var _fetch = require('fetch');
+var _googleapis = require('googleapis');
 
-var _fetch2 = _interopRequireDefault(_fetch);
-
-var _querystring = require('querystring');
-
-var _querystring2 = _interopRequireDefault(_querystring);
+var _googleapis2 = _interopRequireDefault(_googleapis);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class GoogleOAuth extends _react2.default.Component {
+let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = class GoogleOAuth extends _react2.default.Component {
 
     constructor(props) {
         super(props);
@@ -40,11 +36,15 @@ let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class 
     }
 
     componentDidMount() {
+        this.props.state.dislpayMenu = false;
         let port = Math.floor(Math.random() * (65535 - 49152) + 49152);
-        let gurl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + this.props.config.GoogleClientId;
-        gurl += "&response_type=code";
-        gurl += "&scope=" + encodeURIComponent('https://www.googleapis.com/auth/drive.file');
-        gurl += "&redirect_uri=http://127.0.0.1:" + port;
+
+        let OAuthClient = new _googleapis2.default.auth.OAuth2(this.props.config.GoogleClientId, this.props.config.GoogleClientSecret, "http://127.0.0.1:" + port);
+
+        let gurl = OAuthClient.generateAuthUrl({
+            access_type: 'offline',
+            scope: 'https://www.googleapis.com/auth/drive.file'
+        });
         _electron.ipcRenderer.send('openOAuthPanel', gurl);
 
         let server = _http2.default.createServer();
@@ -61,25 +61,15 @@ let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class 
             } else {
                 let code = queryData.query.code;
 
-                gurl = 'https://www.googleapis.com/oauth2/v4/token';
-
-                let body = {
-                    code: code,
-                    client_id: this.props.config.GoogleClientId,
-                    client_secret: this.props.config.GoogleClientSecret,
-                    grant_type: 'authorization_code',
-                    redirect_uri: 'http://localhost'
-                };
-
-                console.log(_querystring2.default.stringify(body));
-                _fetch2.default.fetchUrl(gurl, { payload: _querystring2.default.stringify(body) }, (error, meta, body) => {
-                    console.log(meta);
-                    console.log(body.toString());
-                    let result = JSON.parse(body.toString());
-                    this.props.config.GoogleAccessToken = result.access_token;
-                    this.props.config.GoogleRefreshToken = refresh_token;
-                    this.props.config.GoogleTokenValidTill = Date.now() + result.expires_in;
-                    console.log(result);
+                OAuthClient.getToken(code, (err, tokens) => {
+                    if (err) {
+                        window.logger.error(err);
+                    } else {
+                        console.log(tokens);
+                        this.props.config.GoogleAccessToken = tokens.access_token;
+                        this.props.config.GoogleRefreshToken = tokens.refresh_token;
+                        this.props.config.GoogleTokenValidTill = tokens.expiry_date;
+                    }
                 });
             }
         };
@@ -121,6 +111,6 @@ let GoogleOAuth = (_dec = (0, _mobxReact.inject)('config'), _dec(_class = class 
             )
         );
     }
-}) || _class);
+}) || _class) || _class);
 exports.default = GoogleOAuth;
 //# sourceMappingURL=GoogleOAuth.js.map
