@@ -53,6 +53,21 @@ class ConfigEdit extends React.Component {
         return <button className="btn btn-outline-primary" onClick={this.makeDropboxOAuth.bind(this)}><Fa icon='dropbox' />Connect</button>
     }
 
+    changeAutoUpload(e){
+        this.props.config.autoUpload = e.target.checked
+    }
+
+    getAutoUploadDestination(){
+        return this.props.config.autoUploadDestination === 'google' ? 'G-Drive': 'Dropbox';
+    }
+
+    setAutoUploadToGoogle(){
+        this.props.config.autoUploadDestination = 'google';
+    }
+    setAutoUploadToDropbox(){
+        this.props.config.autoUploadDestination = 'dropbox';
+    }
+
     render() {
         return <div className="row">
             <div className="col">
@@ -78,6 +93,30 @@ class ConfigEdit extends React.Component {
                     </div>
                     <div className="col">
                         <button className="btn btn-success" onClick={this.openFactorioLogin.bind(this)}>Change Login Data</button>
+                    </div>
+                </div>
+                <div className="row mb.2">
+                    <div className="col">
+                        <span>Auto Cloud upload:</span>
+                    </div>
+                    <div className="col">
+                        <label className="custom-checkbox custom-control">
+                            <input type="checkbox" className="custom-control-input" onChange={this.changeAutoUpload.bind(this)}
+                                   checked={this.props.config.autoUpload} />
+                            <span className="custom-control-indicator" />
+                        </label>
+                    </div>
+                </div>
+                <div className="row mb-2">
+                    <div className="col">
+                        Auto upload to:
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">{this.getAutoUploadDestination()}</button>
+                        <div className="dropdown-menu">
+                            <button className="dropdown-item" onClick={this.setAutoUploadToGoogle.bind(this)}>G-Drive</button>
+                            <button className="dropdown-item" onClick={this.setAutoUploadToDropbox.bind(this)}>Dropbox</button>
+                        </div>
                     </div>
                 </div>
                 <div className="row mb-2">

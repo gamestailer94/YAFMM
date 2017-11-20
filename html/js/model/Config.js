@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
 
 var _mobx = require('mobx');
 
@@ -88,7 +88,11 @@ let Config = (_class = class Config {
 
         _initDefineProp(this, 'DropboxAccessToken', _descriptor10, this);
 
-        _initDefineProp(this, 'firstRun', _descriptor11, this);
+        _initDefineProp(this, 'autoUpload', _descriptor11, this);
+
+        _initDefineProp(this, 'autoUploadDestination', _descriptor12, this);
+
+        _initDefineProp(this, 'firstRun', _descriptor13, this);
     }
 
     get activeProfile() {
@@ -257,7 +261,17 @@ let Config = (_class = class Config {
     initializer: function () {
         return '';
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'autoUpload', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return true;
+    }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'autoUploadDestination', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return 'google';
+    }
+}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;

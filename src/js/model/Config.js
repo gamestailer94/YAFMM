@@ -19,7 +19,8 @@ class Config {
     @observable GoogleRefreshToken= '';
     @observable GoogleTokenValidTill='';
     @observable DropboxAccessToken= '';
-
+    @observable autoUpload = true;
+    @observable autoUploadDestination = 'google';
 
     @observable firstRun = true;
 

@@ -88,6 +88,21 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
         );
     }
 
+    changeAutoUpload(e) {
+        this.props.config.autoUpload = e.target.checked;
+    }
+
+    getAutoUploadDestination() {
+        return this.props.config.autoUploadDestination === 'google' ? 'G-Drive' : 'Dropbox';
+    }
+
+    setAutoUploadToGoogle() {
+        this.props.config.autoUploadDestination = 'google';
+    }
+    setAutoUploadToDropbox() {
+        this.props.config.autoUploadDestination = 'dropbox';
+    }
+
     render() {
         return _react2.default.createElement(
             'div',
@@ -153,6 +168,62 @@ let ConfigEdit = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReac
                             'button',
                             { className: 'btn btn-success', onClick: this.openFactorioLogin.bind(this) },
                             'Change Login Data'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row mb.2' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        _react2.default.createElement(
+                            'span',
+                            null,
+                            'Auto Cloud upload:'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        _react2.default.createElement(
+                            'label',
+                            { className: 'custom-checkbox custom-control' },
+                            _react2.default.createElement('input', { type: 'checkbox', className: 'custom-control-input', onChange: this.changeAutoUpload.bind(this),
+                                checked: this.props.config.autoUpload }),
+                            _react2.default.createElement('span', { className: 'custom-control-indicator' })
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row mb-2' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        'Auto upload to:'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'btn btn-secondary dropdown-toggle', 'data-toggle': 'dropdown' },
+                            this.getAutoUploadDestination()
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'dropdown-menu' },
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'dropdown-item', onClick: this.setAutoUploadToGoogle.bind(this) },
+                                'G-Drive'
+                            ),
+                            _react2.default.createElement(
+                                'button',
+                                { className: 'dropdown-item', onClick: this.setAutoUploadToDropbox.bind(this) },
+                                'Dropbox'
+                            )
                         )
                     )
                 ),
