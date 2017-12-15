@@ -11,6 +11,7 @@ class Config {
     @observable factorioUsername = '';
     @observable factorioPassword = '';
     @observable factorioSavePw = true;
+    @observable factorioAuthToken = '';
     GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
     GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
     DropboxClientId = "qinr0h3tth1vpvk";
@@ -20,7 +21,7 @@ class Config {
     @observable GoogleTokenValidTill='';
     @observable DropboxAccessToken= '';
     @observable autoUpload = true;
-    @observable autoUploadDestination = 'google';
+    @observable autoUploadDestination = '';
 
     @observable firstRun = true;
 

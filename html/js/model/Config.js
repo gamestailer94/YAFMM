@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6, _descriptor7, _descriptor8, _descriptor9, _descriptor10, _descriptor11, _descriptor12, _descriptor13, _descriptor14;
 
 var _mobx = require('mobx');
 
@@ -75,24 +75,26 @@ let Config = (_class = class Config {
 
         _initDefineProp(this, 'factorioSavePw', _descriptor6, this);
 
+        _initDefineProp(this, 'factorioAuthToken', _descriptor7, this);
+
         this.GoogleClientId = "267751026207-57hbr9k4cjlj4269q8l9t4jl9c8t1k5u.apps.googleusercontent.com";
         this.GoogleClientSecret = "z_hU9Y1lMU8aHDWJ9a8cx0Sv";
         this.DropboxClientId = "qinr0h3tth1vpvk";
         this.DropboxClientSecret = 'f9utkik99rlhr4w';
 
-        _initDefineProp(this, 'GoogleAccessToken', _descriptor7, this);
+        _initDefineProp(this, 'GoogleAccessToken', _descriptor8, this);
 
-        _initDefineProp(this, 'GoogleRefreshToken', _descriptor8, this);
+        _initDefineProp(this, 'GoogleRefreshToken', _descriptor9, this);
 
-        _initDefineProp(this, 'GoogleTokenValidTill', _descriptor9, this);
+        _initDefineProp(this, 'GoogleTokenValidTill', _descriptor10, this);
 
-        _initDefineProp(this, 'DropboxAccessToken', _descriptor10, this);
+        _initDefineProp(this, 'DropboxAccessToken', _descriptor11, this);
 
-        _initDefineProp(this, 'autoUpload', _descriptor11, this);
+        _initDefineProp(this, 'autoUpload', _descriptor12, this);
 
-        _initDefineProp(this, 'autoUploadDestination', _descriptor12, this);
+        _initDefineProp(this, 'autoUploadDestination', _descriptor13, this);
 
-        _initDefineProp(this, 'firstRun', _descriptor13, this);
+        _initDefineProp(this, 'firstRun', _descriptor14, this);
     }
 
     get activeProfile() {
@@ -241,37 +243,42 @@ let Config = (_class = class Config {
     initializer: function () {
         return true;
     }
-}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'GoogleAccessToken', [_mobx.observable], {
+}), _descriptor7 = _applyDecoratedDescriptor(_class.prototype, 'factorioAuthToken', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'GoogleRefreshToken', [_mobx.observable], {
+}), _descriptor8 = _applyDecoratedDescriptor(_class.prototype, 'GoogleAccessToken', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'GoogleTokenValidTill', [_mobx.observable], {
+}), _descriptor9 = _applyDecoratedDescriptor(_class.prototype, 'GoogleRefreshToken', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'DropboxAccessToken', [_mobx.observable], {
+}), _descriptor10 = _applyDecoratedDescriptor(_class.prototype, 'GoogleTokenValidTill', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return '';
     }
-}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'autoUpload', [_mobx.observable], {
+}), _descriptor11 = _applyDecoratedDescriptor(_class.prototype, 'DropboxAccessToken', [_mobx.observable], {
+    enumerable: true,
+    initializer: function () {
+        return '';
+    }
+}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'autoUpload', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;
     }
-}), _descriptor12 = _applyDecoratedDescriptor(_class.prototype, 'autoUploadDestination', [_mobx.observable], {
+}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'autoUploadDestination', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
-        return 'google';
+        return '';
     }
-}), _descriptor13 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
+}), _descriptor14 = _applyDecoratedDescriptor(_class.prototype, 'firstRun', [_mobx.observable], {
     enumerable: true,
     initializer: function () {
         return true;

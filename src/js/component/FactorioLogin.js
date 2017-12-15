@@ -1,5 +1,6 @@
 import React from "react";
 import {inject, observer} from 'mobx-react'
+import FactorioLoginController from '../controller/FactorioLoginController';
 
 @inject('config') @inject('state') @observer
 class FactorioLogin extends React.Component {
@@ -9,7 +10,8 @@ class FactorioLogin extends React.Component {
         this.state = {
             'username': this.props.config.factorioUsername,
             'password': this.props.config.factorioPassword,
-            'savePw': this.props.config.factorioSavePw
+            'savePw': this.props.config.factorioSavePw,
+            'errorText': ''
         }
     }
 
@@ -34,13 +36,32 @@ class FactorioLogin extends React.Component {
 
     onSave(){
         this.props.config.factorioUsername = this.state.username;
-        this.props.config.factorioPassword = this.state.password;
         this.props.config.factorioSavePw = this.state.savePw;
-        let prevPage = this.props.state.prevPage;
-        this.props.state.prevPage = '';
-        this.props.state.page = prevPage;
+        if(this.state.savePw) {
+            this.props.config.factorioPassword = this.state.password;
+        }else{
+            this.props.config.factorioPassword = '';
+            this.props.state.factorioPassword = this.state.password;
+        }
+        let loginController = new FactorioLoginController();
+        loginController.getAuthToken(this.state.username, this.state.password).then((token)=> {
+            this.props.config.factorioAuthToken = token;
+            this.props.config.factorioAuthTokenValidTill = Date.now()+3600;
+            let prevPage = this.props.state.prevPage;
+            this.props.state.prevPage = '';
+            this.props.state.page = prevPage;
+        }).catch((error)=>{
+            if(error.message === 'Unauthorized'){
+                this.setState({
+                    errorText: 'Username and password don\'t match.'
+                })
+            }else{
+                this.setState({
+                    errorText: 'Something went wrong, please check your internet connection.'
+                })
+            }
+        })
     }
-
 
     render(){
         return <div>
@@ -48,6 +69,11 @@ class FactorioLogin extends React.Component {
                 <div className="col-6 m-auto">
                     <h4 className="text-center">To download Mods and update Factorio to the latest version
                         YAFMM needs your Login Data for Factorio</h4>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-6 m-auto">
+                    <p className="text-danger text-center">{this.state.errorText}</p>
                 </div>
             </div>
             <div className="row">

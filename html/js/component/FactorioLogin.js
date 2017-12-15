@@ -12,6 +12,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _FactorioLoginController = require('../controller/FactorioLoginController');
+
+var _FactorioLoginController2 = _interopRequireDefault(_FactorioLoginController);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxReact.inject)('state'), _dec(_class = _dec2(_class = (0, _mobxReact.observer)(_class = class FactorioLogin extends _react2.default.Component {
@@ -21,7 +25,8 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
         this.state = {
             'username': this.props.config.factorioUsername,
             'password': this.props.config.factorioPassword,
-            'savePw': this.props.config.factorioSavePw
+            'savePw': this.props.config.factorioSavePw,
+            'errorText': ''
         };
     }
 
@@ -46,11 +51,31 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
 
     onSave() {
         this.props.config.factorioUsername = this.state.username;
-        this.props.config.factorioPassword = this.state.password;
         this.props.config.factorioSavePw = this.state.savePw;
-        let prevPage = this.props.state.prevPage;
-        this.props.state.prevPage = '';
-        this.props.state.page = prevPage;
+        if (this.state.savePw) {
+            this.props.config.factorioPassword = this.state.password;
+        } else {
+            this.props.config.factorioPassword = '';
+            this.props.state.factorioPassword = this.state.password;
+        }
+        let loginController = new _FactorioLoginController2.default();
+        loginController.getAuthToken(this.state.username, this.state.password).then(token => {
+            this.props.config.factorioAuthToken = token;
+            this.props.config.factorioAuthTokenValidTill = Date.now() + 3600;
+            let prevPage = this.props.state.prevPage;
+            this.props.state.prevPage = '';
+            this.props.state.page = prevPage;
+        }).catch(error => {
+            if (error.message === 'Unauthorized') {
+                this.setState({
+                    errorText: 'Username and password don\'t match.'
+                });
+            } else {
+                this.setState({
+                    errorText: 'Something went wrong, please check your internet connection.'
+                });
+            }
+        });
     }
 
     render() {
@@ -67,6 +92,19 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                         'h4',
                         { className: 'text-center' },
                         'To download Mods and update Factorio to the latest version YAFMM needs your Login Data for Factorio'
+                    )
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'row' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'col-6 m-auto' },
+                    _react2.default.createElement(
+                        'p',
+                        { className: 'text-danger text-center' },
+                        this.state.errorText
                     )
                 )
             ),
