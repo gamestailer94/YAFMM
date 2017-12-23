@@ -30,12 +30,12 @@
     "gulp-watch": "^4.3.11"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "bootstrap": "4.0.0-beta.2",
     "dropbox": "^2.5.12",
     "electron-storage": "^1.0.7",
     "electron-window-state": "^4.1.1",
-    "fetch": "^1.1.0",
     "googleapis": "^22.2.0",
     "jquery": "^3.2.1",
     "jxs": "^0.0.1",

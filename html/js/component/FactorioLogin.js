@@ -26,6 +26,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
             'username': this.props.config.factorioUsername,
             'password': this.props.config.factorioPassword,
             'savePw': this.props.config.factorioSavePw,
+            'saveDisabled': false,
             'errorText': ''
         };
     }
@@ -49,7 +50,9 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
         this.setState({ 'savePw': e.target.checked });
     }
 
-    onSave() {
+    onSave(e) {
+        e.preventDefault();
+        this.setState({ saveDisabled: true });
         this.props.config.factorioUsername = this.state.username;
         this.props.config.factorioSavePw = this.state.savePw;
         if (this.state.savePw) {
@@ -61,7 +64,6 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
         let loginController = new _FactorioLoginController2.default();
         loginController.getAuthToken(this.state.username, this.state.password).then(token => {
             this.props.config.factorioAuthToken = token;
-            this.props.config.factorioAuthTokenValidTill = Date.now() + 3600;
             let prevPage = this.props.state.prevPage;
             this.props.state.prevPage = '';
             this.props.state.page = prevPage;
@@ -75,6 +77,7 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                     errorText: 'Something went wrong, please check your internet connection.'
                 });
             }
+            this.setState({ saveDisabled: false });
         });
     }
 
@@ -115,50 +118,54 @@ let FactorioLogin = (_dec = (0, _mobxReact.inject)('config'), _dec2 = (0, _mobxR
                     'div',
                     { className: 'col-6 m-auto' },
                     _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
+                        'form',
+                        { onSubmit: this.onSave.bind(this) },
                         _react2.default.createElement(
-                            'label',
-                            null,
-                            'Username'
-                        ),
-                        _react2.default.createElement('input', { className: 'form-control', type: 'text', value: this.state.username, onChange: this.changeUsername.bind(this), placeholder: 'Username' })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            'Password'
-                        ),
-                        _react2.default.createElement('input', { className: 'form-control', type: 'password', value: this.state.password, onChange: this.changePassword.bind(this), placeholder: 'Password' })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-check' },
-                        _react2.default.createElement(
-                            'label',
-                            { className: 'custom-checkbox custom-control' },
-                            _react2.default.createElement('input', { type: 'checkbox', className: 'custom-control-input', onChange: this.changeSavePw.bind(this),
-                                checked: this.state.savePw }),
-                            _react2.default.createElement('span', { className: 'custom-control-indicator' }),
+                            'div',
+                            { className: 'form-group' },
                             _react2.default.createElement(
-                                'span',
-                                { className: 'custom-control-description' },
-                                'Save Password',
-                                _react2.default.createElement('i', { className: 'fa fa-lg fa-fw fa-question-circle-o', 'data-toggle': 'tooltip', 'data-placement': 'right',
-                                    title: 'Your Password will only be stored locally' })
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'form-group' },
+                                'label',
+                                null,
+                                'Username'
+                            ),
+                            _react2.default.createElement('input', { className: 'form-control', type: 'text', value: this.state.username, onChange: this.changeUsername.bind(this), placeholder: 'Username' })
+                        ),
                         _react2.default.createElement(
-                            'button',
-                            { className: 'btn btn-outline-primary', onClick: this.onSave.bind(this) },
-                            'Save'
+                            'div',
+                            { className: 'form-group' },
+                            _react2.default.createElement(
+                                'label',
+                                null,
+                                'Password'
+                            ),
+                            _react2.default.createElement('input', { className: 'form-control', type: 'password', value: this.state.password, onChange: this.changePassword.bind(this), placeholder: 'Password' })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-check' },
+                            _react2.default.createElement(
+                                'label',
+                                { className: 'custom-checkbox custom-control' },
+                                _react2.default.createElement('input', { type: 'checkbox', className: 'custom-control-input', onChange: this.changeSavePw.bind(this),
+                                    checked: this.state.savePw }),
+                                _react2.default.createElement('span', { className: 'custom-control-indicator' }),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'custom-control-description' },
+                                    'Save Password',
+                                    _react2.default.createElement('i', { className: 'fa fa-lg fa-fw fa-question-circle-o', 'data-toggle': 'tooltip', 'data-placement': 'right',
+                                        title: 'Your Password will only be stored locally' })
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'form-group' },
+                            _react2.default.createElement(
+                                'button',
+                                { type: 'submit', className: 'btn btn-outline-primary', disabled: this.state.saveDisabled },
+                                'Save'
+                            )
                         )
                     )
                 )

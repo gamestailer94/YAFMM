@@ -11,6 +11,7 @@ class FactorioLogin extends React.Component {
             'username': this.props.config.factorioUsername,
             'password': this.props.config.factorioPassword,
             'savePw': this.props.config.factorioSavePw,
+            'saveDisabled': false,
             'errorText': ''
         }
     }
@@ -34,7 +35,9 @@ class FactorioLogin extends React.Component {
         this.setState({'savePw': e.target.checked})
     }
 
-    onSave(){
+    onSave(e){
+        e.preventDefault();
+        this.setState({saveDisabled: true});
         this.props.config.factorioUsername = this.state.username;
         this.props.config.factorioSavePw = this.state.savePw;
         if(this.state.savePw) {
@@ -46,7 +49,6 @@ class FactorioLogin extends React.Component {
         let loginController = new FactorioLoginController();
         loginController.getAuthToken(this.state.username, this.state.password).then((token)=> {
             this.props.config.factorioAuthToken = token;
-            this.props.config.factorioAuthTokenValidTill = Date.now()+3600;
             let prevPage = this.props.state.prevPage;
             this.props.state.prevPage = '';
             this.props.state.page = prevPage;
@@ -60,6 +62,7 @@ class FactorioLogin extends React.Component {
                     errorText: 'Something went wrong, please check your internet connection.'
                 })
             }
+            this.setState({saveDisabled: false});
         })
     }
 
@@ -78,27 +81,29 @@ class FactorioLogin extends React.Component {
             </div>
             <div className="row">
                 <div className="col-6 m-auto">
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input className="form-control" type="text" value={this.state.username} onChange={this.changeUsername.bind(this)} placeholder="Username" />
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input className="form-control" type="password" value={this.state.password} onChange={this.changePassword.bind(this)} placeholder="Password" />
-                    </div>
-                    <div className="form-check">
-                        <label className="custom-checkbox custom-control">
-                            <input type="checkbox" className="custom-control-input" onChange={this.changeSavePw.bind(this)}
-                                   checked={this.state.savePw} />
-                            <span className="custom-control-indicator" />
-                            <span className="custom-control-description">Save Password
-                                <i className="fa fa-lg fa-fw fa-question-circle-o" data-toggle="tooltip" data-placement="right"
-                                   title="Your Password will only be stored locally"/></span>
-                        </label>
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-outline-primary" onClick={this.onSave.bind(this)} >Save</button>
-                    </div>
+                    <form onSubmit={this.onSave.bind(this)}>
+                        <div className="form-group">
+                            <label>Username</label>
+                            <input className="form-control" type="text" value={this.state.username} onChange={this.changeUsername.bind(this)} placeholder="Username" />
+                        </div>
+                        <div className="form-group">
+                            <label>Password</label>
+                            <input className="form-control" type="password" value={this.state.password} onChange={this.changePassword.bind(this)} placeholder="Password" />
+                        </div>
+                        <div className="form-check">
+                            <label className="custom-checkbox custom-control">
+                                <input type="checkbox" className="custom-control-input" onChange={this.changeSavePw.bind(this)}
+                                       checked={this.state.savePw} />
+                                <span className="custom-control-indicator" />
+                                <span className="custom-control-description">Save Password
+                                    <i className="fa fa-lg fa-fw fa-question-circle-o" data-toggle="tooltip" data-placement="right"
+                                       title="Your Password will only be stored locally"/></span>
+                            </label>
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-outline-primary" disabled={this.state.saveDisabled} >Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
