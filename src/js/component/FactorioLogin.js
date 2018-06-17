@@ -47,7 +47,10 @@ class FactorioLogin extends React.Component {
             this.props.state.factorioPassword = this.state.password;
         }
         let loginController = new FactorioLoginController();
-        loginController.getAuthToken(this.state.username, this.state.password).then((token)=> {
+        loginController.getAuthToken(
+            this.state.username,
+            this.state.password
+        ).then((token)=> {
             this.props.config.factorioAuthToken = token;
             let prevPage = this.props.state.prevPage;
             this.props.state.prevPage = '';
